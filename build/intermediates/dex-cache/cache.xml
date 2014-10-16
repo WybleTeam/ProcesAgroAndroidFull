@@ -2,6 +2,12 @@
 <pre-dex-items>
 
     <item
+        dex="/home/flia/Final/ProcesAgro2/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-ec9c17ff1d589e84be6f8206d18a03b0c4571d33.jar"
+        jar="/home/flia/Final/ProcesAgro2/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
+        jumboMode="false"
+        revision="19.1.0"
+        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
+    <item
         dex="/home/flia/Final/ProcesAgro2/app/build/intermediates/pre-dexed/debug/classes-eb6cbc7c0c8c7301949b252bff516df32c30980d.jar"
         jar="/home/flia/Final/ProcesAgro2/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/classes.jar"
         jumboMode="false"
@@ -19,11 +25,5 @@
         jumboMode="false"
         revision="19.1.0"
         sha1="f21927d22fe31889ecce94dd697a2e75b137e0ef"/>
-    <item
-        dex="/home/flia/Final/ProcesAgro2/app/build/intermediates/pre-dexed/debug/internal_impl-20.0.0-ec9c17ff1d589e84be6f8206d18a03b0c4571d33.jar"
-        jar="/home/flia/Final/ProcesAgro2/app/build/intermediates/exploded-aar/com.android.support/support-v4/20.0.0/libs/internal_impl-20.0.0.jar"
-        jumboMode="false"
-        revision="19.1.0"
-        sha1="e40b3078e3fbd353c9f44da8df25a8fc0078209d"/>
 
 </pre-dex-items>

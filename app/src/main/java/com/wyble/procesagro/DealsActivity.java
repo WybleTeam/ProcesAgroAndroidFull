@@ -7,12 +7,10 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 import android.widget.TextView;
 
 import com.wyble.procesagro.helpers.CheckAdapter;
-import com.wyble.procesagro.models.Convocatoria;
 import com.wyble.procesagro.models.Oferta;
 import com.wyble.procesagro.models.PasoOferta;
 
@@ -55,5 +53,10 @@ public class DealsActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public void onBackPressed() {
+        // Do Here what ever you want do on back press;
     }
 }
