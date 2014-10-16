@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.wyble.procesagro" >
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/ic_launcher"
+        android:label="@string/app_name"
+        android:theme="@style/AppTheme" >
+        <activity
+            android:name=".MainActivity"
+            android:label="@string/app_name"
+            android:screenOrientation="portrait" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".WebViewActivity"
+            android:label="@string/title_activity_web_view"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
+        </activity>
+        <activity
+            android:name=".TransactActivity"
+            android:label="@string/title_activity_transact"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CallActivity"
+            android:label="@string/title_activity_call"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
+        </activity>
+        <activity
+            android:name=".DealsActivity"
+            android:label="@string/title_activity_deals"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
+        </activity>
+        <activity
+            android:name=".ConvDetalle"
+            android:label="@string/title_activity_conv_detalle"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Call_Form1Activity"
+            android:label="@string/title_activity_call__form1"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Call_Form2Activity"
+            android:label="@string/title_activity_call__form2"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Call_Form3Activity"
+            android:label="@string/title_activity_call__form3"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Call_Form4Activity"
+            android:label="@string/title_activity_call__form4"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Call_Form5Activity"
+            android:label="@string/title_activity_call__form5"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".Call_Form6Activity"
+            android:label="@string/title_activity_call__form6"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".CallFinishActivity"
+            android:label="@string/title_activity_call_finish"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".StepsDetailsActivity"
+            android:label="@string/title_activity_steps_details"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".MainSearch"
+            android:label="@string/title_activity_main_search"
+            android:screenOrientation="portrait" >
+        </activity>
+        <activity
+            android:name=".AboutActivity"
+            android:label="@string/title_activity_about"
+            android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CursosVirtuales"
+            android:label="@string/title_activity_cursos_virtuales" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
+        </activity>
+        <activity
+            android:name=".CursoDetalle"
+            android:label="@string/title_activity_curso_detalle" >
+        </activity>
+    </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
+
+</manifest>

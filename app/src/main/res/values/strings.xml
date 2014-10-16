@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">ProcesAgro</string>
+    <string name="action_settings">Opciones</string>
+    <string name="title_activity_web_view">Web</string>
+    <string name="title_activity_transact">Tramites</string>
+    <string name="title_activity_call">Convocatorias</string>
+    <string name="title_activity_deals">Ofertas</string>
+    <string name="title_activity_conv_detalle">Detalle Convocatorias</string>
+    <string name="title_activity_call__form1">Tramite</string>
+    <string name="title_activity_call__form2">Ubicacion</string>
+    <string name="title_activity_call__form3">Solicitante</string>
+    <string name="title_activity_call__form4">Bovinos</string>
+    <string name="title_activity_call__form5">Bufalinos</string>
+    <string name="title_activity_call__form6">Motivo</string>
+    <string name="title_activity_call_finish">Justificación</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title_activity_ofertas">Ofertas</string>
+    <string name="title_activity_steps_details">Detalles</string>
+    <string name="title_activity_main_search">Buscador...</string>
+    <string name="title_activity_about">Acerca de...</string>
+    <string name="title_activity_cursos_virtuales">Cursos Virtuales</string>
+    <string name="title_activity_curso_detalle">Detalle Curso</string>
+
+</resources>
