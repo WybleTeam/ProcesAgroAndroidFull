@@ -2,8 +2,8 @@ package com.wyble.procesagro;
 
 import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -59,69 +59,72 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     public void onClick(View v) {
 
         tramite.paso7(justificacion.getText().toString(), terminos.isChecked());
+        String justificacionString = justificacion.getText().toString();
 
-        HashMap hmTramite = new HashMap();
-        hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
+        if(justificacionString.isEmpty()){
+            Toast.makeText(CallFinishActivity.this, "Ingrese una justificación para continuar.", Toast.LENGTH_SHORT).show();
+        }else{
+            HashMap hmTramite = new HashMap();
+            hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
 
-        ArrayList<HashMap> tables = new ArrayList<HashMap>();
-        tables.add(hmTramite);
-        DB db = new DB(this, tables);
-        db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
+            ArrayList<HashMap> tables = new ArrayList<HashMap>();
+            tables.add(hmTramite);
+            DB db = new DB(this, tables);
+            db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
 
-        ArrayList<String> fields = new ArrayList();
-        fields.add(tramite.getIca());
-        fields.add(tramite.getNombreFinca());
-        fields.add(tramite.getNombrePropietario());
-        fields.add(tramite.getCedulaPropietario());
-        fields.add(tramite.getFijoPropietario());
-        fields.add(tramite.getCelularPropietario());
-        fields.add(tramite.getMunicipio());
-        fields.add(tramite.getDepartamento());
-        fields.add(tramite.getNombreSolicitante());
-        fields.add(tramite.getCedulaSolicitante());
-        fields.add(tramite.getFijoSolicitante());
-        fields.add(tramite.getCelularSolicitante());
-        fields.add(Integer.toString(tramite.getMenor1Bovinos()));
-        fields.add(Integer.toString(tramite.getEntre12Bovinos()));
-        fields.add(Integer.toString(tramite.getEntre23Bovinos()));
-        fields.add(Integer.toString(tramite.getMayores3Bovinos()));
-        fields.add(Integer.toString(tramite.getMenor1Bufalino()));
-        fields.add(Integer.toString(tramite.getEntre12Bufalino()));
-        fields.add(Integer.toString(tramite.getEntre23Bufalino()));
-        fields.add(Integer.toString(tramite.getMayor3Bufalino()));
-        fields.add(Integer.toString(tramite.getPrimeraVez()));
-        fields.add(Integer.toString(tramite.getNacimiento()));
-        fields.add(Integer.toString(tramite.getCompra()));
-        fields.add(Integer.toString(tramite.getPerdidaDIN()));
-        fields.add(tramite.getJustificacion());
+            ArrayList<String> fields = new ArrayList();
+            fields.add(tramite.getIca());
+            fields.add(tramite.getNombreFinca());
+            fields.add(tramite.getNombrePropietario());
+            fields.add(tramite.getCedulaPropietario());
+            fields.add(tramite.getFijoPropietario());
+            fields.add(tramite.getCelularPropietario());
+            fields.add(tramite.getMunicipio());
+            fields.add(tramite.getDepartamento());
+            fields.add(tramite.getNombreSolicitante());
+            fields.add(tramite.getCedulaSolicitante());
+            fields.add(tramite.getFijoSolicitante());
+            fields.add(tramite.getCelularSolicitante());
+            fields.add(Integer.toString(tramite.getMenor1Bovinos()));
+            fields.add(Integer.toString(tramite.getEntre12Bovinos()));
+            fields.add(Integer.toString(tramite.getEntre23Bovinos()));
+            fields.add(Integer.toString(tramite.getMayores3Bovinos()));
+            fields.add(Integer.toString(tramite.getMenor1Bufalino()));
+            fields.add(Integer.toString(tramite.getEntre12Bufalino()));
+            fields.add(Integer.toString(tramite.getEntre23Bufalino()));
+            fields.add(Integer.toString(tramite.getMayor3Bufalino()));
+            fields.add(Integer.toString(tramite.getPrimeraVez()));
+            fields.add(Integer.toString(tramite.getNacimiento()));
+            fields.add(Integer.toString(tramite.getCompra()));
+            fields.add(Integer.toString(tramite.getPerdidaDIN()));
+            fields.add(tramite.getJustificacion());
 
-        if (tramite.getTerminos()) {
-            String complete_string = this.TRAMITE_URL + this.join(fields, "/");
-            HttpClient client = new DefaultHttpClient();
-            HttpGet httpGet = new HttpGet(complete_string);
+            if (tramite.getTerminos()) {
+                String complete_string = this.TRAMITE_URL + this.join(fields, "/");
+                HttpClient client = new DefaultHttpClient();
+                HttpGet httpGet = new HttpGet(complete_string);
 
-            try {
-                HttpResponse response = client.execute(httpGet);
-                StatusLine statusLine = response.getStatusLine();
-                int statusCode = statusLine.getStatusCode();
-                if (statusCode == 200) {
-                    Toast.makeText(context, "Información enviada con éxito", Toast.LENGTH_LONG).show();
-                } else {
-                    Toast.makeText(context, "Formulario guardado, intente enviarlo más tarde", Toast.LENGTH_LONG).show();
+                try {
+                    HttpResponse response = client.execute(httpGet);
+                    StatusLine statusLine = response.getStatusLine();
+                    int statusCode = statusLine.getStatusCode();
+                    if (statusCode == 200) {
+                        Toast.makeText(context, "Información enviada con éxito", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "Formulario guardado, intente enviarlo más tarde", Toast.LENGTH_LONG).show();
+                    }
+                } catch (ClientProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
-            } catch (ClientProtocolException e) {
-                e.printStackTrace();
-            } catch (IOException e) {
-                e.printStackTrace();
+            } else {
+                Toast.makeText(context, "Formulario guardado con éxito", Toast.LENGTH_LONG).show();
             }
-        } else {
-            Toast.makeText(context, "Formulario guardado con éxito", Toast.LENGTH_LONG).show();
-        }
 
-
-
-        Intent goToHome= new Intent(CallFinishActivity.this, MainActivity.class);
-        startActivity(goToHome);
+            Intent goToHome= new Intent(CallFinishActivity.this, MainActivity.class);
+            startActivity(goToHome);
+            }
     }
 
     private String join(ArrayList<String> r, String delimiter) {
