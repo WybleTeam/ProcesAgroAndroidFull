@@ -45,10 +45,10 @@ public class Call_Form3Activity extends ActionBarActivity {
         form3_next = (Button) findViewById(R.id.form3_next);
         form3_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String nombre_solic_v= nombre_solic.getText().toString();
-                final String cedula_solic_v= cedula_solic.getText().toString();
-                final String telefono_solic_v= telefono_solic.getText().toString();
-                final String celular_solic_v= celular_solic.getText().toString();
+                final String nombre_solic_v= nombre_solic.getText().toString().trim();
+                final String cedula_solic_v= cedula_solic.getText().toString().trim();
+                final String telefono_solic_v= telefono_solic.getText().toString().trim();
+                final String celular_solic_v= celular_solic.getText().toString().trim();
                 if(nombre_solic_v.equals("") || cedula_solic_v.equals("")
                         || telefono_solic_v.length()==0 || celular_solic_v.length()==0){
 

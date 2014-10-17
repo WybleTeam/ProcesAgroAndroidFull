@@ -2,15 +2,18 @@ package com.wyble.procesagro;
 
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
+import android.webkit.URLUtil;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import com.wyble.procesagro.helpers.DB;
+import com.wyble.procesagro.helpers.URIEncoder;
 import com.wyble.procesagro.models.Tramite;
 
 import org.apache.http.HttpResponse;
@@ -22,6 +25,9 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.net.URI;
+import java.net.URL;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -59,7 +65,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     public void onClick(View v) {
 
         tramite.paso7(justificacion.getText().toString(), terminos.isChecked());
-        String justificacionString = justificacion.getText().toString();
+        String justificacionString = justificacion.getText().toString().trim();
 
         if(justificacionString.isEmpty()){
             Toast.makeText(CallFinishActivity.this, "Ingrese una justificación para continuar.", Toast.LENGTH_SHORT).show();
@@ -101,6 +107,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
 
             if (tramite.getTerminos()) {
                 String complete_string = this.TRAMITE_URL + this.join(fields, "/");
+
                 HttpClient client = new DefaultHttpClient();
                 HttpGet httpGet = new HttpGet(complete_string);
 
@@ -134,8 +141,8 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
         StringBuffer sb = new StringBuffer();
         int i, len = r.size() - 1;
         for (i = 0; i < len; i++){
-            sb.append(r.get(i) + delimiter);
+            sb.append(r.get(i).toString().replaceAll(" ", "_") + delimiter);
         }
-        return sb.toString() + r.get(i);
+        return sb.toString() + r.get(i).toString().replaceAll(" ", "_");
     }
 }
