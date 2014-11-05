@@ -168,13 +168,17 @@ public class MainActivity extends ActionBarActivity{
         Integer ANDROID_VERSION = android.os.Build.VERSION.SDK_INT;
         Log.d("ANDROID-VERSION", "=====>" + ANDROID_VERSION);
 
-        if(ANDROID_VERSION > 10){
+        if(ANDROID_VERSION >= 11){
             Log.d("Version-validator", "Version superior a 10");
             Timer myTimer = new Timer();
             myTimer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    new AsyncWS().execute();
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            new AsyncWS().execute();
+                        }
+                    });
                 }
             }, 0, 5000);
         }else{

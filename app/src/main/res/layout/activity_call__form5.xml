@@ -65,7 +65,7 @@
                         android:layout_height="wrap_content"
                         android:layout_gravity="center_horizontal"
                         android:layout_marginTop="@dimen/activity_vertical_margin_top"
-                        android:text="Mayores de 1 Año"
+                        android:text="Menores de 1 Año"
                         android:textAppearance="?android:attr/textAppearanceSmall" />
 
                     <TextView
