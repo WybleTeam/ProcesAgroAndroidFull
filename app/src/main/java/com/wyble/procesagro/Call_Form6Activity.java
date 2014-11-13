@@ -45,10 +45,10 @@ public class Call_Form6Activity extends ActionBarActivity {
         form6_next = (Button) findViewById(R.id.form6_next);
         form6_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String primera_vez_v= primera_vez.getText().toString().trim();
-                final String nacimiento_v= nacimiento.getText().toString().trim();
-                final String compra_animales_v= compra_animales.getText().toString().trim();
-                final String perdida_din_v= perdida_din.getText().toString().trim();
+                final String primera_vez_v= primera_vez.getText().toString();
+                final String nacimiento_v= nacimiento.getText().toString();
+                final String compra_animales_v= compra_animales.getText().toString();
+                final String perdida_din_v= perdida_din.getText().toString();
                 if(primera_vez_v.equals("") || nacimiento_v.equals("")
                         || compra_animales_v.equals("") || perdida_din_v.equals("")){
 

@@ -40,6 +40,15 @@
             android:textSize="15dp" />
 
         <EditText
+            android:id="@+id/municipio"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:maxLength="30"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/activity_vertical_margin"
+            android:hint="Municipio o Vereda" />
+
+        <EditText
             android:id="@+id/departamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -48,22 +57,6 @@
             android:maxLength="30"
             android:hint="Departamento"
             android:inputType="textPersonName" />
-
-        <!--<Spinner
-            android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:id="@+id/spinner_states"
-            android:layout_gravity="center_horizontal"
-            android:spinnerMode="dialog"
-            android:entries="@array/states_list"/>-->
-
-        <EditText
-            android:id="@+id/municipio"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:maxLength="30"
-            android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="Municipio o Vereda" />
 
         <Button
             android:id="@+id/form2_next"

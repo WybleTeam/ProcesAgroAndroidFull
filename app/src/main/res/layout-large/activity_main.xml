@@ -11,7 +11,9 @@
     <LinearLayout
         android:orientation="vertical"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="fill_parent"
+        android:layout_centerHorizontal="true"
+        android:layout_alignParentTop="true"
         android:id="@+id/linearLayout">
 
         <LinearLayout
@@ -52,12 +54,11 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
-            android:weightSum="1"
-            android:padding="9dp">
+            android:weightSum="1">
 
             <EditText
                 android:layout_width="wrap_content"
@@ -65,14 +66,14 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
                 android:inputType="text"
-                android:background="@drawable/buscar_hbig"
+                android:background="@drawable/buscar"
                 android:editable="false" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buscar_button"
-                android:background="@drawable/boton_buscar_xbig" />
+                android:background="@drawable/boton_buscar" />
 
         </LinearLayout>
 
@@ -82,22 +83,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:weightSum="1"
-            android:id="@+id/row1"
-            android:padding="9dp">
+            android:id="@+id/row1">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row1_button1"
-                android:background="@drawable/cursos_vituales_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/cursos_virtuales" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row1_button2"
-                android:background="@drawable/agromapas_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/agromapas" />
         </LinearLayout>
 
         <LinearLayout
@@ -106,22 +104,19 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:weightSum="1"
-            android:id="@+id/row2"
-            android:padding="9dp">
+            android:id="@+id/row2">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button1"
-                android:background="@drawable/sipsa_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/sipsa" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button2"
-                android:background="@drawable/siembra_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/siembra" />
         </LinearLayout>
 
         <LinearLayout
@@ -129,19 +124,17 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/row3"
-            android:padding="9dp">
+            android:id="@+id/row3">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row3_button1"
-                android:background="@drawable/convocatoria_xbig"
+                android:background="@drawable/convocatorias"
                 android:text="Titulo Convocatoria\nDescripción Corta"
-                android:textSize="36dp"
+                android:textSize="22dp"
                 android:paddingBottom="30dp"
-                android:textStyle="bold"
-                android:layout_margin="3dp" />
+                android:textStyle="bold" />
 
         </LinearLayout>
 
@@ -150,15 +143,13 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/row4"
-            android:padding="9dp">
+            android:id="@+id/row4">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row4_button1"
-                android:background="@drawable/identifica_v_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/identifica" />
         </LinearLayout>
 
         <LinearLayout
@@ -166,21 +157,18 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/row5"
-            android:padding="9dp">
+            android:id="@+id/row5">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button1"
-                android:background="@drawable/autorizacion_productos_ecologicos_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/autorizacion" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button2"
-                android:background="@drawable/certificado_incentivo_forestal_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/certificado" />
 
         </LinearLayout>
 
@@ -189,22 +177,19 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
-            android:id="@+id/row6"
-            android:padding="9dp">
+            android:id="@+id/row6">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row6_button1"
-                android:background="@drawable/tarjeta_profesional_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/tramite_tarj" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row6_button2"
-                android:background="@drawable/incentivo_rural_dre_xbig"
-                android:layout_margin="3dp" />
+                android:background="@drawable/incentivo" />
 
         </LinearLayout>
 

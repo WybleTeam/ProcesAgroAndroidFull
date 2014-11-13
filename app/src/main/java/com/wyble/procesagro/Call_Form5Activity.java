@@ -45,10 +45,10 @@ public class Call_Form5Activity extends ActionBarActivity {
         form5_next = (Button) findViewById(R.id.form5_next);
         form5_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String bufalino1_v= bufalino1.getText().toString().trim();
-                final String bufalino2_v= bufalino2.getText().toString().trim();
-                final String bufalino3_v= bufalino3.getText().toString().trim();
-                final String bufalino4_v= bufalino4.getText().toString().trim();
+                final String bufalino1_v= bufalino1.getText().toString();
+                final String bufalino2_v= bufalino2.getText().toString();
+                final String bufalino3_v= bufalino3.getText().toString();
+                final String bufalino4_v= bufalino4.getText().toString();
                 if(bufalino1_v.equals("") || bufalino2_v.equals("") || bufalino3_v.equals("") || bufalino4_v.equals("")){
 
                     Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();

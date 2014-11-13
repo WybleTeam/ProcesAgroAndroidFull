@@ -41,8 +41,8 @@ public class Call_Form2Activity extends ActionBarActivity {
         form2_next = (Button) findViewById(R.id.form2_next);
         form2_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String municipio_v= municipio.getText().toString().trim();
-                final String departamento_v= departamento.getText().toString().trim();
+                final String municipio_v= municipio.getText().toString();
+                final String departamento_v= departamento.getText().toString();
                 if(municipio_v.equals("") || departamento_v.equals("")){
 
                     Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();
