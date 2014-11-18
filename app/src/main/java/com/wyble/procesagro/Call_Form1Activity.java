@@ -52,12 +52,12 @@ public class Call_Form1Activity extends ActionBarActivity {
         form1_next = (Button) findViewById(R.id.form1_next);
         form1_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String ica_v = ica.getText().toString();
-                final String finca_v = finca.getText().toString();
-                final String propietario_v = propietario.getText().toString();
-                final String cedula_prop_v = cedula_prop.getText().toString();
-                final String telefono_prop_v = telefono_prop.getText().toString();
-                final String celular_prop_v = celular_prop.getText().toString();
+                final String ica_v = ica.getText().toString().trim();
+                final String finca_v = finca.getText().toString().trim();
+                final String propietario_v = propietario.getText().toString().trim();
+                final String cedula_prop_v = cedula_prop.getText().toString().trim();
+                final String telefono_prop_v = telefono_prop.getText().toString().trim();
+                final String celular_prop_v = celular_prop.getText().toString().trim();
 
                 //si todos los campos vacios
                 if(ica_v.equals("") || finca_v.equals("") || propietario_v.equals("")

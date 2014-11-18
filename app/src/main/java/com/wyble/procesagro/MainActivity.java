@@ -1,10 +1,12 @@
 package com.wyble.procesagro;
 
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -24,9 +26,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Map;
 import java.util.Random;
-import java.util.Set;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -65,6 +65,8 @@ public class MainActivity extends ActionBarActivity{
 
     private ArrayList<HashMap> tables;
 
+    public ArrayList<Convocatoria> convocatorias;
+
     private DB db;
 
     private Oferta oferta1;
@@ -85,7 +87,7 @@ public class MainActivity extends ActionBarActivity{
     Button callView2;
     Button callView3;
     Button callView4;
-    Button callView5;
+    public Button callView5; //public for access using other Class
     Button callView6;
     Button callView7;
     Button callView8;
@@ -137,7 +139,7 @@ public class MainActivity extends ActionBarActivity{
         db = new DB(this, tables);
 
 
-        final ArrayList<Convocatoria> convocatorias = this.getConvocatorias();
+        convocatorias = this.getConvocatorias();
         ArrayList<Oferta> ofertas = this.getOfertas();
         ArrayList<Tramite> tramites = this.getTramites();
 
@@ -162,16 +164,34 @@ public class MainActivity extends ActionBarActivity{
 
         callView5= (Button) findViewById(R.id.row3_button1);//row3
 
-        Timer myTimer = new Timer();
-        myTimer.schedule(new TimerTask() {
-            @Override
-            public void run() {
-                Random randomGenerator = new Random();
-                int index = randomGenerator.nextInt(convocatorias.size());
-                //callView5.setText(convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
-                Log.d(MainActivity.class.getName(), convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
-            }
-        }, 0, 4000);
+
+        Integer ANDROID_VERSION = android.os.Build.VERSION.SDK_INT;
+        Log.d("ANDROID-VERSION", "=====>" + ANDROID_VERSION);
+
+        if(ANDROID_VERSION >= 11){
+            Log.d("Version-validator", "Version superior a 10");
+            Timer myTimer = new Timer();
+            myTimer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    runOnUiThread(new Runnable() {
+                        public void run() {
+                            new AsyncWS().execute();
+                        }
+                    });
+                }
+            }, 0, 5000);
+        }else{
+            Log.d("Version-validator", "Version igual o menor a 10");
+            Random randomGenerator = new Random();
+            int index = randomGenerator.nextInt(convocatorias.size());
+            callView5.setText(convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
+            Log.d(MainActivity.class.getName(), convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
+
+            Toast toast = Toast.makeText(MainActivity.this,"Su versión de Android no soporta algunas funciones avanzadas.", Toast.LENGTH_LONG);
+            toast.setGravity(Gravity.CENTER, 0, 0);
+            toast.show();
+        }
 
         callView6= (Button) findViewById(R.id.row4_button1);//row4
         callView7= (Button) findViewById(R.id.row5_button1);//row5
@@ -453,6 +473,32 @@ public class MainActivity extends ActionBarActivity{
         }
         db.close();
         return tramites;
+    }
+
+    private class AsyncWS extends AsyncTask<Void, Void, Void> {
+
+        @Override
+        protected void onPreExecute() {
+            super.onPreExecute();
+            Log.d("Iniciando Thread convocatoria", "1.->Iniciando Thread convocatoria");
+        }
+
+        protected Void doInBackground(Void... params) {
+            runOnUiThread(new Runnable() {
+                public void run() {
+                    Random randomGenerator = new Random();
+                    int index = randomGenerator.nextInt(convocatorias.size());
+                    callView5.setText(convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
+                    //Log.d(MainActivity.class.getName(), convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
+                    Log.d("Procesando Thread Convocatoria", "2.->Procesando Thread Convocatoria");
+                }
+            });
+            return null;
+        }
+
+        protected void onPostExecute(Void result) {
+            Log.d("Terminando Thread Convocatoria", "3.->Terminando Thread Convocatoria");
+        }
     }
 
 }
