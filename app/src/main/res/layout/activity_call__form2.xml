@@ -39,7 +39,16 @@
             android:text="Ubicación Finca"
             android:textSize="15dp" />
 
-        <EditText
+        <Spinner
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/departamento"
+            android:layout_gravity="center_horizontal"
+            android:layout_weight="0.11"
+            android:entries="@array/states_list"
+            android:spinnerMode="dialog" />
+
+        <!--<EditText
             android:id="@+id/departamento"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,23 +56,24 @@
             android:ems="10"
             android:maxLength="30"
             android:hint="Departamento"
-            android:inputType="textPersonName" />
+            android:inputType="textPersonName" />-->
 
-        <!--<Spinner
+        <Spinner
             android:layout_width="match_parent"
-            android:layout_height="46dp"
-            android:id="@+id/spinner_states"
+            android:layout_height="wrap_content"
+            android:id="@+id/municipio"
             android:layout_gravity="center_horizontal"
-            android:spinnerMode="dialog"
-            android:entries="@array/states_list"/>-->
+            android:layout_weight="0.11"
+            android:entries="@array/towns_list"
+            android:spinnerMode="dialog" />
 
-        <EditText
+       <!-- <EditText
             android:id="@+id/municipio"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:maxLength="30"
             android:layout_marginTop="@dimen/activity_vertical_margin"
-            android:hint="Municipio o Vereda" />
+            android:hint="Municipio o Vereda" />-->
 
         <Button
             android:id="@+id/form2_next"

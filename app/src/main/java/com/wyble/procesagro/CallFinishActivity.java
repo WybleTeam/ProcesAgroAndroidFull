@@ -49,10 +49,10 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
         tramite = (Tramite) dataFromPaso6;
 
         justificacion = (EditText) findViewById(R.id.justificacion);
-        terminos = (CheckBox) findViewById(R.id.terminos);
+        //terminos = (CheckBox) findViewById(R.id.terminos);
 
         justificacion.setText(tramite.getJustificacion());
-        terminos.setChecked(tramite.getTerminos());
+        //terminos.setChecked(tramite.getTerminos());
 
         finish= (Button) findViewById(R.id.endButt);
         finish.setOnClickListener(this);
@@ -61,7 +61,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     @Override
     public void onClick(View v) {
 
-        tramite.paso7(justificacion.getText().toString(), terminos.isChecked());
+        //tramite.paso7(justificacion.getText().toString(), terminos.isChecked());
         String justificacionString = justificacion.getText().toString().trim();
 
         Boolean conx = this.checkConx(context);
