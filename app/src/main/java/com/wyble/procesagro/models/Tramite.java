@@ -382,4 +382,16 @@ public class Tramite implements Serializable {
     public void setTerminos(Boolean terminos) {
         this.terminos = terminos;
     }
+
+    public Boolean validaSumaBovinosBufalinosMotivos() {
+        Boolean result = false;
+        Integer bovinos = this.menor1Bovinos + this.entre12Bovinos + this.entre23Bovinos + this.mayores3Bovinos;
+        Integer bufalinos = this.menor1Bufalino + this.entre12Bufalino + this.entre23Bufalino + this.mayor3Bufalino;
+        Integer motivos = this.perdidaDIN + this.compra + this.nacimiento + this.primeraVez;
+
+        if ((bovinos + bufalinos) == motivos) {
+            result = true;
+        }
+        return  result;
+    }
 }

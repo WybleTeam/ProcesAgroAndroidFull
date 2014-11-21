@@ -106,29 +106,27 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
                 fields.add(Integer.toString(tramite.getPerdidaDIN()));
                 fields.add(tramite.getJustificacion());
 
-                if (tramite.getTerminos()) {
-                    String complete_string = this.TRAMITE_URL + this.join(fields, "/");
 
-                    HttpClient client = new DefaultHttpClient();
-                    HttpGet httpGet = new HttpGet(complete_string);
+                String complete_string = this.TRAMITE_URL + this.join(fields, "/");
 
-                    try {
-                        HttpResponse response = client.execute(httpGet);
-                        StatusLine statusLine = response.getStatusLine();
-                        int statusCode = statusLine.getStatusCode();
-                        if (statusCode == 200) {
-                            Toast.makeText(context, "Información enviada con éxito", Toast.LENGTH_LONG).show();
-                        } else {
-                            Toast.makeText(context, "Formulario guardado, intente enviarlo más tarde", Toast.LENGTH_LONG).show();
-                        }
-                    } catch (ClientProtocolException e) {
-                        e.printStackTrace();
-                    } catch (IOException e) {
-                        e.printStackTrace();
+                HttpClient client = new DefaultHttpClient();
+                HttpGet httpGet = new HttpGet(complete_string);
+
+                try {
+                    HttpResponse response = client.execute(httpGet);
+                    StatusLine statusLine = response.getStatusLine();
+                    int statusCode = statusLine.getStatusCode();
+                    if (statusCode == 200) {
+                        Toast.makeText(context, "Información enviada con éxito", Toast.LENGTH_LONG).show();
+                    } else {
+                        Toast.makeText(context, "Formulario guardado, intente enviarlo más tarde", Toast.LENGTH_LONG).show();
                     }
-                } else {
-                    Toast.makeText(context, "Formulario guardado con éxito", Toast.LENGTH_LONG).show();
+                } catch (ClientProtocolException e) {
+                    e.printStackTrace();
+                } catch (IOException e) {
+                    e.printStackTrace();
                 }
+
 
                 Intent goToHome= new Intent(CallFinishActivity.this, MainActivity.class);
                 startActivity(goToHome);

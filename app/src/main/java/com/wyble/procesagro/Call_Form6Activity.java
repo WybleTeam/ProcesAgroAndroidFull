@@ -59,17 +59,21 @@ public class Call_Form6Activity extends ActionBarActivity {
                             Integer.parseInt(compra_animales_v),
                             Integer.parseInt(perdida_din_v));
 
-                    HashMap hmTramite = new HashMap();
-                    hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
+                    if (tramite.validaSumaBovinosBufalinosMotivos()) {
+                        HashMap hmTramite = new HashMap();
+                        hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
 
-                    ArrayList<HashMap> tables = new ArrayList<HashMap>();
-                    tables.add(hmTramite);
-                    DB db = new DB(context, tables);
-                    db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
+                        ArrayList<HashMap> tables = new ArrayList<HashMap>();
+                        tables.add(hmTramite);
+                        DB db = new DB(context, tables);
+                        db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
 
-                    Intent intent = new Intent(Call_Form6Activity.this, CallFinishActivity.class);
-                    intent.putExtra("TRAMITE_PASO6", tramite);
-                    startActivity(intent);
+                        Intent intent = new Intent(Call_Form6Activity.this, CallFinishActivity.class);
+                        intent.putExtra("TRAMITE_PASO6", tramite);
+                        startActivity(intent);
+                    } else {
+                        Toast.makeText(context, "La suma de las cantidades debe ser igual a la suma total de bovinos y bufalinos.", Toast.LENGTH_LONG).show();
+                    }
                 }
             }
         });
