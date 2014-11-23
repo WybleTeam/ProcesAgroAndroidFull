@@ -56,8 +56,8 @@ public class ConvDetalle extends ActionBarActivity {
         facebookBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("->","Facebook");
-
-                String urlToShare = convocatoria.getUrl();
+                //String urlToShare = convocatoria.getUrl();
+                String urlToShare = "@AgronetMADR  ofrece a todos los Colombianos #AgroTeConecta, informate aquí "+convocatoria.getUrl();
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 // intent.putExtra(Intent.EXTRA_SUBJECT, "Foo bar"); // NB: has no effect!
@@ -67,6 +67,7 @@ public class ConvDetalle extends ActionBarActivity {
                 boolean facebookAppFound = false;
                 List<ResolveInfo> matches = getPackageManager().queryIntentActivities(intent, 0);
                 for (ResolveInfo info : matches) {
+                    Log.d("->","xxxxxx");
                     if (info.activityInfo.packageName.toLowerCase().startsWith("com.facebook.katana")) {
                         intent.setPackage(info.activityInfo.packageName);
                         facebookAppFound = true;
@@ -76,7 +77,9 @@ public class ConvDetalle extends ActionBarActivity {
 
                 // As fallback, launch sharer.php in a browser
                 if (!facebookAppFound) {
-                    String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
+                    Log.d("->","yyyy");
+                    //String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
+                    String sharerUrl = "@AgronetMADR  ofrece a todos los Colombianos #AgroTeConecta, informate aquí "+convocatoria.getUrl();
                     intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
                 }
                 startActivity(intent);
@@ -86,7 +89,8 @@ public class ConvDetalle extends ActionBarActivity {
         twitterBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("->","Twitter");
-                String urlToShare = convocatoria.getUrl();
+                //String urlToShare = convocatoria.getUrl();
+                String urlToShare = "@AgronetMADR  ofrece a todos los Colombianos #AgroTeConecta, informate aquí "+convocatoria.getUrl();
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 // intent.putExtra(Intent.EXTRA_SUBJECT, "Foo bar"); // NB: has no effect!
@@ -112,8 +116,5 @@ public class ConvDetalle extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-
     }
-
-
 }

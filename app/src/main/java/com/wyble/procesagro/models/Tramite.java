@@ -1,5 +1,7 @@
 package com.wyble.procesagro.models;
 
+import android.util.Log;
+
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -110,9 +112,9 @@ public class Tramite implements Serializable {
         this.primeraVez = primeraVez;
     }
 
-    public void paso7(String justificacion, Boolean terminos) {
+    public void paso7(String justificacion) {
         this.justificacion = justificacion;
-        this.terminos = terminos;
+        //this.terminos = terminos;
     }
 
     @Override
@@ -388,6 +390,9 @@ public class Tramite implements Serializable {
         Integer bovinos = this.menor1Bovinos + this.entre12Bovinos + this.entre23Bovinos + this.mayores3Bovinos;
         Integer bufalinos = this.menor1Bufalino + this.entre12Bufalino + this.entre23Bufalino + this.mayor3Bufalino;
         Integer motivos = this.perdidaDIN + this.compra + this.nacimiento + this.primeraVez;
+        Log.d("//", "//bovinos "+ bovinos);
+        Log.d("//", "//bufalinos "+ bufalinos);
+        Log.d("//", "//motivos "+ motivos);
 
         if ((bovinos + bufalinos) == motivos) {
             result = true;

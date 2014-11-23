@@ -47,7 +47,7 @@ public class Call_Form4Activity extends ActionBarActivity {
         form4_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 final String bovino1_v= bovino1.getText().toString().trim();
-                final String bovino2_v= bovino1.getText().toString().trim();
+                final String bovino2_v= bovino2.getText().toString().trim();
                 final String bovino3_v= bovino3.getText().toString().trim();
                 final String bovino4_v= bovino4.getText().toString().trim();
                 if(bovino1_v.equals("") || bovino2_v.equals("") || bovino3_v.equals("") || bovino4_v.equals("")){
