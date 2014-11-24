@@ -6,11 +6,13 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.wyble.procesagro.helpers.DB;
+import com.wyble.procesagro.models.Departamento;
 import com.wyble.procesagro.models.Tramite;
 
 import java.io.Serializable;
@@ -26,6 +28,10 @@ public class Call_Form2Activity extends ActionBarActivity {
     Context context= this;
     private static final String TRAMITE_TABLE = "tramites";
 
+    private DB db;
+
+    private ArrayList<HashMap> tables;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,8 +40,18 @@ public class Call_Form2Activity extends ActionBarActivity {
         Serializable dataFromPaso1 = getIntent().getSerializableExtra("TRAMITE_PASO1");
         final Tramite tramite = (Tramite) dataFromPaso1;
 
-        municipio = (Spinner) findViewById(R.id.municipio);
+        tables = new ArrayList<HashMap>();
+
+        db = new DB(this,tables);
+
         departamento = (Spinner) findViewById(R.id.departamento);
+        municipio = (Spinner) findViewById(R.id.municipio);
+
+        ArrayAdapter<Departamento> adaptador =
+                new ArrayAdapter<Departamento>(this, android.R.layout.simple_list_item_1,getDepartamentos());
+
+        departamento.setAdapter(adaptador);
+        //ArrayList arrayDepa = getDepartamentos();
 
         //municipio.setText(tramite.getMunicipio());
         //departamento.setText(tramite.getDepartamento());
@@ -71,5 +87,19 @@ public class Call_Form2Activity extends ActionBarActivity {
             }
         });
 
+    }
+
+    private ArrayList<Departamento> getDepartamentos() {
+        ArrayList departamentos = new ArrayList();
+        ArrayList<HashMap> data = db.getAllData("departamentos");
+        for (HashMap d : data) {
+            departamentos.add(new Departamento(
+                    Integer.parseInt(d.get("autoId").toString()),
+                    d.get("nombreDepartamento").toString()
+            ));
+        }
+
+        this.db.close();
+        return departamentos;
     }
 }

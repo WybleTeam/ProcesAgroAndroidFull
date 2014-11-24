@@ -16,6 +16,7 @@ import com.wyble.procesagro.helpers.DB;
 import com.wyble.procesagro.helpers.Webservice;
 import com.wyble.procesagro.models.Convocatoria;
 import com.wyble.procesagro.models.CursoVirtual;
+import com.wyble.procesagro.models.Departamento;
 import com.wyble.procesagro.models.Oferta;
 import com.wyble.procesagro.models.PasoOferta;
 import com.wyble.procesagro.models.Servicio;
@@ -51,6 +52,8 @@ public class MainActivity extends ActionBarActivity{
 
     private static final String CURSOS_VIRTUALES_URL = "http://tucompualdia.com/aplicaciones/procesAgroWebService/cursosvirtuales.php";
 
+    private static final String DEPARTAMENTOS_URL = "http://procesagro.tucompualdia.com/departamentos";
+
     private static final String CONVOCATORIAS_TABLE = "convocatorias";
 
     private static final String OFERTAS_TABLE = "ofertas";
@@ -62,6 +65,8 @@ public class MainActivity extends ActionBarActivity{
     private static final String TRAMITE_TABLE = "tramites";
 
     private static final String CURSOS_VIRTUALES_TABLE = "cursos_virtuales";
+
+    private static final String DEPARTAMENTOS_TABLE = "departamentos";
 
     private ArrayList<HashMap> tables;
 
@@ -113,12 +118,14 @@ public class MainActivity extends ActionBarActivity{
         Webservice wsPasosOfertas = new Webservice(PASOS_OFERTAS_URL);
         Webservice wsServicios = new Webservice(SERVICIOS_URL);
         Webservice wsCursosVirt = new Webservice(CURSOS_VIRTUALES_URL);
+        Webservice wsDepartamentos = new Webservice(DEPARTAMENTOS_URL);
 
         final HashMap<String, JSONArray> hmConvocatorias = new HashMap();
         final HashMap<String, JSONArray> hmOfertas = new HashMap();
         final HashMap<String, JSONArray> hmPasosOfertas = new HashMap();
         final HashMap<String, JSONArray> hmServicios = new HashMap();
         final HashMap<String, JSONArray> hmCursosVirt = new HashMap();
+        final HashMap<String, JSONArray> hmDepartamentos = new HashMap();
         HashMap<String, JSONArray> hmTramite = new HashMap();
 
         hmConvocatorias.put(CONVOCATORIAS_TABLE, wsConvocatorias.parseJsonText(wsConvocatorias.getJsonText()));
@@ -126,6 +133,7 @@ public class MainActivity extends ActionBarActivity{
         hmPasosOfertas.put(PASOS_OFERTAS_TABLE, parsePasosOfertasJsonText(wsPasosOfertas.getJsonText()));
         hmServicios.put(SERVICIOS_TABLE, wsServicios.parseJsonText(wsServicios.getJsonText()));
         hmCursosVirt.put(CURSOS_VIRTUALES_TABLE, wsCursosVirt.parseJsonText(wsCursosVirt.getJsonText()));
+        hmDepartamentos.put(DEPARTAMENTOS_TABLE, wsDepartamentos.parseJsonText(wsDepartamentos.getJsonText()));
         Tramite initTramite = new Tramite();
         hmTramite.put(TRAMITE_TABLE, initTramite.toJSONArray());
 
@@ -134,6 +142,7 @@ public class MainActivity extends ActionBarActivity{
         tables.add(hmPasosOfertas);
         tables.add(hmServicios);
         tables.add(hmCursosVirt);
+        tables.add(hmDepartamentos);
         tables.add(hmTramite);
 
         db = new DB(this, tables);
@@ -306,6 +315,7 @@ public class MainActivity extends ActionBarActivity{
                 db.initDataTable(hmPasosOfertas);
                 db.initDataTable(hmServicios);
                 db.initDataTable(hmCursosVirt);
+                db.initDataTable(hmDepartamentos);
             }
         });
     }
@@ -362,6 +372,22 @@ public class MainActivity extends ActionBarActivity{
         db.close();
         return cursosVirtuales;
     }
+
+    private ArrayList<Departamento> getDepartamentos() {
+        ArrayList departamentos = new ArrayList();
+        ArrayList<HashMap> data = db.getAllData(DEPARTAMENTOS_TABLE);
+        for (HashMap d : data) {
+            departamentos.add(new Departamento(
+                    Integer.parseInt(d.get("autoId").toString()),
+                    d.get("nombreDepartamento").toString()
+            ));
+        }
+
+        this.db.close();
+        return departamentos;
+    }
+
+
 
     private ArrayList<Oferta> getOfertas() {
         ArrayList ofertas = new ArrayList();

@@ -112,8 +112,8 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
         protected void onPreExecute() {
             super.onPreExecute();
             mProgressDialog = new ProgressDialog(CallFinishActivity.this);
-            mProgressDialog.setTitle("ProceAgro");
-            mProgressDialog.setMessage("Enviando información. Espere...");
+            mProgressDialog.setTitle("ProcesAgro");
+            mProgressDialog.setMessage("Enviando información. gracias por su espera...");
             mProgressDialog.setIndeterminate(false);
             mProgressDialog.setCancelable(false);
             mProgressDialog.show();

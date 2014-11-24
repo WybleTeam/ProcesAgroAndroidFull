@@ -45,7 +45,8 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="@dimen/activity_vertical_margin"
-                android:hint="Nombre solicitante" />
+                android:hint="Nombre solicitante"
+                android:inputType="textCapWords|textPersonName" />
 
             <EditText
                 android:id="@+id/cedula_solic"
