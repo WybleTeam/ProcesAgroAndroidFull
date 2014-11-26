@@ -30,7 +30,7 @@
         android:weightSum="1">
 
         <TextView
-            android:id="@+id/textView"
+            android:id="@+id/tituloUbicacion"
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
@@ -63,7 +63,6 @@
             android:id="@+id/municipio"
             android:layout_gravity="center_horizontal"
             android:layout_weight="0.11"
-            android:entries="@array/towns_list"
             android:spinnerMode="dialog" />
 
        <!-- <EditText

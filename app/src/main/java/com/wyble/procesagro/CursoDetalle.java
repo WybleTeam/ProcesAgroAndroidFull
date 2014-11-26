@@ -73,8 +73,7 @@ public class CursoDetalle extends ActionBarActivity {
 
                 // As fallback, launch sharer.php in a browser
                 if (!facebookAppFound) {
-                    String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+                    Toast.makeText(CursoDetalle.this, "No tiene instalada la aplicación de Facebook.", Toast.LENGTH_SHORT).show();
                 }
                 startActivity(intent);
             }
@@ -102,9 +101,7 @@ public class CursoDetalle extends ActionBarActivity {
 
                 // As fallback, launch sharer.php in a browser
                 if (!twitterAppFound) {
-                    Toast.makeText(CursoDetalle.this, "Twitter app not Insatlled in your mobile", Toast.LENGTH_SHORT).show();
-                    //String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
-                    //intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+                    Toast.makeText(CursoDetalle.this, "No tiene instalada la aplicación de Twitter.", Toast.LENGTH_SHORT).show();
                 }
                 startActivity(intent);
             }

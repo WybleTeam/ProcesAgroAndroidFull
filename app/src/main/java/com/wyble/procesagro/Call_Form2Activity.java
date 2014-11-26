@@ -6,13 +6,16 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.wyble.procesagro.helpers.DB;
 import com.wyble.procesagro.models.Departamento;
+import com.wyble.procesagro.models.Municipio;
 import com.wyble.procesagro.models.Tramite;
 
 import java.io.Serializable;
@@ -27,8 +30,9 @@ public class Call_Form2Activity extends ActionBarActivity {
     private Spinner municipio, departamento;
     Context context= this;
     private static final String TRAMITE_TABLE = "tramites";
-
+    private String iddepartamento = null;
     private DB db;
+    String id_dpto;
 
     private ArrayList<HashMap> tables;
 
@@ -47,10 +51,19 @@ public class Call_Form2Activity extends ActionBarActivity {
         departamento = (Spinner) findViewById(R.id.departamento);
         municipio = (Spinner) findViewById(R.id.municipio);
 
+        ArrayAdapter<Municipio> adaptadorMun =
+                new ArrayAdapter<Municipio>(Call_Form2Activity.this, android.R.layout.simple_list_item_1,getMunicipio());
+
+        municipio.setAdapter(adaptadorMun);
+
         ArrayAdapter<Departamento> adaptador =
                 new ArrayAdapter<Departamento>(this, android.R.layout.simple_list_item_1,getDepartamentos());
 
         departamento.setAdapter(adaptador);
+        departamento.setOnItemSelectedListener(new SpinnerLis());
+
+
+
         //ArrayList arrayDepa = getDepartamentos();
 
         //municipio.setText(tramite.getMunicipio());
@@ -94,7 +107,7 @@ public class Call_Form2Activity extends ActionBarActivity {
         ArrayList<HashMap> data = db.getAllData("departamentos");
         for (HashMap d : data) {
             departamentos.add(new Departamento(
-                    Integer.parseInt(d.get("autoId").toString()),
+                    Integer.parseInt(d.get("id").toString()),
                     d.get("nombreDepartamento").toString()
             ));
         }
@@ -102,4 +115,74 @@ public class Call_Form2Activity extends ActionBarActivity {
         this.db.close();
         return departamentos;
     }
+
+
+    private ArrayList<Municipio> getMunicipio() {
+        ArrayList municipios = new ArrayList();
+        ArrayList<HashMap> data = db.getAllData("municipios");
+        for (HashMap d : data) {
+            municipios.add(new Municipio(
+                    Integer.parseInt(d.get("autoId").toString()),
+                    d.get("nombreMunicipio").toString(),
+                    d.get("departamento").toString()
+            ));
+        }
+
+        this.db.close();
+        return municipios;
+    }
+
+
+    private ArrayList<Municipio> getMunicipio2(String iddepartamento) {
+        ArrayList municipios = new ArrayList();
+        ArrayList<HashMap> data = db.getDataByName("municipios","departamento", iddepartamento);
+        for (HashMap d : data) {
+            municipios.add(new Municipio(
+                    Integer.parseInt(d.get("autoId").toString()),
+                    d.get("nombreMunicipio").toString(),
+                    d.get("departamento").toString()
+            ));
+        }
+
+        this.db.close();
+        return municipios;
+    }
+
+    public class SpinnerLis implements AdapterView.OnItemSelectedListener {
+        private long itemIdAtPosition;
+
+        @Override
+        public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            TextView tex = (TextView) findViewById(R.id.tituloUbicacion);
+
+            tex.setText("has seleccionado "+ departamento.getSelectedItem().toString());
+            //cargaSpinnerMunicipio(parent.);
+            Log.d("mensaje", "spinner data"+departamento.getSelectedItem().toString());
+            String dpto = departamento.getSelectedItem().toString();
+            Log.d("Depart",dpto);
+            String sub_dpto = dpto.substring(0,1);
+            Log.d("sub_dtpo",sub_dpto);
+            String trim_dpto = sub_dpto.trim();
+            id_dpto = trim_dpto;
+            cargaSpinnerMunicipio(id_dpto);
+        }
+
+        private void cargaSpinnerMunicipio(String selectedItemPosition) {
+            //String item = Integer.toString(selectedItemPosition);
+            ArrayAdapter<Municipio> adaptadorMun =
+                    new ArrayAdapter<Municipio>(Call_Form2Activity.this, android.R.layout.simple_list_item_1,getMunicipio2(selectedItemPosition));
+
+            municipio.setAdapter(adaptadorMun);
+
+        }
+
+        @Override
+        public void onNothingSelected(AdapterView<?> adapterView) {
+
+        }
+    }
+
+
 }
+
+

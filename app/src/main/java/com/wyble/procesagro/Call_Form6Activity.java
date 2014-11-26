@@ -58,7 +58,6 @@ public class Call_Form6Activity extends ActionBarActivity {
                             Integer.parseInt(nacimiento_v),
                             Integer.parseInt(compra_animales_v),
                             Integer.parseInt(perdida_din_v));
-
                     if (tramite.validaSumaBovinosBufalinosMotivos()) {
                         HashMap hmTramite = new HashMap();
                         hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());

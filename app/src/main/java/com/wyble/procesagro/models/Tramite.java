@@ -105,11 +105,11 @@ public class Tramite implements Serializable {
         this.mayor3Bufalino = mayor3Bufalino;
     }
 
-    public void paso6(int perdidaDIN, int compra, int nacimiento, int primeraVez) {
-        this.perdidaDIN = perdidaDIN;
-        this.compra = compra;
-        this.nacimiento = nacimiento;
+    public void paso6(int primeraVez, int nacimiento, int compra, int perdidaDIN) {
         this.primeraVez = primeraVez;
+        this.nacimiento = nacimiento;
+        this.compra = compra;
+        this.perdidaDIN = perdidaDIN;
     }
 
     public void paso7(String justificacion) {

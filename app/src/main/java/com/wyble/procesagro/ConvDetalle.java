@@ -77,10 +77,7 @@ public class ConvDetalle extends ActionBarActivity {
 
                 // As fallback, launch sharer.php in a browser
                 if (!facebookAppFound) {
-                    Log.d("->","yyyy");
-                    //String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
-                    String sharerUrl = "@AgronetMADR  ofrece a todos los Colombianos #AgroTeConecta, informate aquí "+convocatoria.getUrl();
-                    intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+                    Toast.makeText(ConvDetalle.this, "No tiene instalada la aplicación de Facebook.", Toast.LENGTH_SHORT).show();
                 }
                 startActivity(intent);
             }
@@ -109,9 +106,7 @@ public class ConvDetalle extends ActionBarActivity {
 
                 // As fallback, launch sharer.php in a browser
                 if (!twitterAppFound) {
-                    Toast.makeText(ConvDetalle.this, "Twitter app not Insatlled in your mobile", Toast.LENGTH_SHORT).show();
-                    //String sharerUrl = "https://www.facebook.com/sharer/sharer.php?u=" + urlToShare;
-                    //intent = new Intent(Intent.ACTION_VIEW, Uri.parse(sharerUrl));
+                    Toast.makeText(ConvDetalle.this, "No tiene instalada la aplicación de Twitter.", Toast.LENGTH_SHORT).show();
                 }
                 startActivity(intent);
             }

@@ -37,8 +37,9 @@
             android:text="descripcion oferta"
             android:id="@+id/deal_descripcion"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.83"
-            android:padding="1dp" />
+            android:padding="1dp"
+            android:maxLines="5"
+            android:scrollbars="vertical"/>
 
         <TextView
             android:layout_width="fill_parent"

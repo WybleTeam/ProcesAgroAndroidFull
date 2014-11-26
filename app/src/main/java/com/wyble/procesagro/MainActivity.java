@@ -1,6 +1,11 @@
 package com.wyble.procesagro;
 
+import android.app.AlertDialog;
+import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.StrictMode;
@@ -17,6 +22,7 @@ import com.wyble.procesagro.helpers.Webservice;
 import com.wyble.procesagro.models.Convocatoria;
 import com.wyble.procesagro.models.CursoVirtual;
 import com.wyble.procesagro.models.Departamento;
+import com.wyble.procesagro.models.Municipio;
 import com.wyble.procesagro.models.Oferta;
 import com.wyble.procesagro.models.PasoOferta;
 import com.wyble.procesagro.models.Servicio;
@@ -54,6 +60,8 @@ public class MainActivity extends ActionBarActivity{
 
     private static final String DEPARTAMENTOS_URL = "http://procesagro.tucompualdia.com/departamentos";
 
+    private static final String MUNICIPIOS_URL = "http://procesagro.tucompualdia.com/municipios/";
+
     private static final String CONVOCATORIAS_TABLE = "convocatorias";
 
     private static final String OFERTAS_TABLE = "ofertas";
@@ -67,6 +75,8 @@ public class MainActivity extends ActionBarActivity{
     private static final String CURSOS_VIRTUALES_TABLE = "cursos_virtuales";
 
     private static final String DEPARTAMENTOS_TABLE = "departamentos";
+
+    private static final String MUNICIPIOS_TABLE = "municipios";
 
     private ArrayList<HashMap> tables;
 
@@ -113,211 +123,260 @@ public class MainActivity extends ActionBarActivity{
         StrictMode.setThreadPolicy(policy);
         tables = new ArrayList<HashMap>();
 
-        Webservice wsConvocatorias = new Webservice(CONVOCATORIAS_URL);
-        Webservice wsOfertas = new Webservice(OFERTAS_URL);
-        Webservice wsPasosOfertas = new Webservice(PASOS_OFERTAS_URL);
-        Webservice wsServicios = new Webservice(SERVICIOS_URL);
-        Webservice wsCursosVirt = new Webservice(CURSOS_VIRTUALES_URL);
-        Webservice wsDepartamentos = new Webservice(DEPARTAMENTOS_URL);
+        Boolean conx = this.checkConx(this);
+        if (conx == true) {
 
-        final HashMap<String, JSONArray> hmConvocatorias = new HashMap();
-        final HashMap<String, JSONArray> hmOfertas = new HashMap();
-        final HashMap<String, JSONArray> hmPasosOfertas = new HashMap();
-        final HashMap<String, JSONArray> hmServicios = new HashMap();
-        final HashMap<String, JSONArray> hmCursosVirt = new HashMap();
-        final HashMap<String, JSONArray> hmDepartamentos = new HashMap();
-        HashMap<String, JSONArray> hmTramite = new HashMap();
+            Webservice wsConvocatorias = new Webservice(CONVOCATORIAS_URL);
+            Webservice wsOfertas = new Webservice(OFERTAS_URL);
+            Webservice wsPasosOfertas = new Webservice(PASOS_OFERTAS_URL);
+            Webservice wsServicios = new Webservice(SERVICIOS_URL);
+            Webservice wsCursosVirt = new Webservice(CURSOS_VIRTUALES_URL);
+            Webservice wsDepartamentos = new Webservice(DEPARTAMENTOS_URL);
+            Webservice wsMunicipios = new Webservice(MUNICIPIOS_URL);
 
-        hmConvocatorias.put(CONVOCATORIAS_TABLE, wsConvocatorias.parseJsonText(wsConvocatorias.getJsonText()));
-        hmOfertas.put(OFERTAS_TABLE, wsOfertas.parseJsonText(wsOfertas.getJsonText()));
-        hmPasosOfertas.put(PASOS_OFERTAS_TABLE, parsePasosOfertasJsonText(wsPasosOfertas.getJsonText()));
-        hmServicios.put(SERVICIOS_TABLE, wsServicios.parseJsonText(wsServicios.getJsonText()));
-        hmCursosVirt.put(CURSOS_VIRTUALES_TABLE, wsCursosVirt.parseJsonText(wsCursosVirt.getJsonText()));
-        hmDepartamentos.put(DEPARTAMENTOS_TABLE, wsDepartamentos.parseJsonText(wsDepartamentos.getJsonText()));
-        Tramite initTramite = new Tramite();
-        hmTramite.put(TRAMITE_TABLE, initTramite.toJSONArray());
+            final HashMap<String, JSONArray> hmConvocatorias = new HashMap();
+            final HashMap<String, JSONArray> hmOfertas = new HashMap();
+            final HashMap<String, JSONArray> hmPasosOfertas = new HashMap();
+            final HashMap<String, JSONArray> hmServicios = new HashMap();
+            final HashMap<String, JSONArray> hmCursosVirt = new HashMap();
+            final HashMap<String, JSONArray> hmDepartamentos = new HashMap();
+            final HashMap<String, JSONArray> hmMunicipios = new HashMap();
+            HashMap<String, JSONArray> hmTramite = new HashMap();
 
-        tables.add(hmConvocatorias);
-        tables.add(hmOfertas);
-        tables.add(hmPasosOfertas);
-        tables.add(hmServicios);
-        tables.add(hmCursosVirt);
-        tables.add(hmDepartamentos);
-        tables.add(hmTramite);
+            hmConvocatorias.put(CONVOCATORIAS_TABLE, wsConvocatorias.parseJsonText(wsConvocatorias.getJsonText()));
+            hmOfertas.put(OFERTAS_TABLE, wsOfertas.parseJsonText(wsOfertas.getJsonText()));
+            hmPasosOfertas.put(PASOS_OFERTAS_TABLE, parsePasosOfertasJsonText(wsPasosOfertas.getJsonText()));
+            hmServicios.put(SERVICIOS_TABLE, wsServicios.parseJsonText(wsServicios.getJsonText()));
+            hmCursosVirt.put(CURSOS_VIRTUALES_TABLE, wsCursosVirt.parseJsonText(wsCursosVirt.getJsonText()));
+            hmDepartamentos.put(DEPARTAMENTOS_TABLE, wsDepartamentos.parseJsonText(wsDepartamentos.getJsonText()));
+            hmMunicipios.put(MUNICIPIOS_TABLE, wsMunicipios.parseJsonText(wsMunicipios.getJsonText()));
+            Tramite initTramite = new Tramite();
+            hmTramite.put(TRAMITE_TABLE, initTramite.toJSONArray());
 
-        db = new DB(this, tables);
+            tables.add(hmConvocatorias);
+            tables.add(hmOfertas);
+            tables.add(hmPasosOfertas);
+            tables.add(hmServicios);
+            tables.add(hmCursosVirt);
+            tables.add(hmDepartamentos);
+            tables.add(hmMunicipios);
+            tables.add(hmTramite);
+
+            db = new DB(this, tables);
 
 
-        convocatorias = this.getConvocatorias();
-        ArrayList<Oferta> ofertas = this.getOfertas();
-        ArrayList<Tramite> tramites = this.getTramites();
+            convocatorias = this.getConvocatorias();
+            ArrayList<Oferta> ofertas = this.getOfertas();
+            ArrayList<Tramite> tramites = this.getTramites();
 
-        if (tramites.size() > 0) {
-            tramite = tramites.get(tramites.size() - 1);
+            if (tramites.size() > 0) {
+                tramite = tramites.get(tramites.size() - 1);
+            } else {
+                tramite = initTramite;
+            }
+
+
+            oferta1 = ofertas.get(0);
+            oferta2 = ofertas.get(1);
+            oferta3 = ofertas.get(2);
+            oferta4 = ofertas.get(3);
+
+            searchText = (EditText) findViewById(R.id.editText);
+            searchBtn = (Button) findViewById(R.id.buscar_button);
+
+            callView1= (Button) findViewById(R.id.row1_button1);//row1
+            callView2= (Button) findViewById(R.id.row1_button2);//row1
+            callView3= (Button) findViewById(R.id.row2_button1);//row2
+            callView4= (Button) findViewById(R.id.row2_button2);//row2
+
+            callView5= (Button) findViewById(R.id.row3_button1);//row3
+
+
+            Integer ANDROID_VERSION = android.os.Build.VERSION.SDK_INT;
+            Log.d("ANDROID-VERSION", "=====>" + ANDROID_VERSION);
+
+            if(ANDROID_VERSION >= 11){
+                Log.d("Version-validator", "Version superior a 10");
+                Timer myTimer = new Timer();
+                myTimer.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+                                new AsyncWS().execute();
+                            }
+                        });
+                    }
+                }, 0, 5000);
+            }else{
+                Log.d("Version-validator", "Version igual o menor a 10");
+                Random randomGenerator = new Random();
+                int index = randomGenerator.nextInt(convocatorias.size());
+                //callView5.setText(convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
+                callView5.setText(convocatorias.get(index).getTitulo());
+                Log.d(MainActivity.class.getName(), convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
+
+                Toast toast = Toast.makeText(MainActivity.this,"Su versión de Android no soporta algunas funciones avanzadas.", Toast.LENGTH_LONG);
+                toast.setGravity(Gravity.CENTER, 0, 0);
+                toast.show();
+            }
+
+            callView6= (Button) findViewById(R.id.row4_button1);//row4
+            callView7= (Button) findViewById(R.id.row5_button1);//row5
+            callView8= (Button) findViewById(R.id.row5_button2);//row5
+            callView9= (Button) findViewById(R.id.row6_button1);//row6
+            callView10= (Button) findViewById(R.id.row6_button2);//row6
+            AboutCall= (Button) findViewById(R.id.acercade_btn);//About button
+            UpdateCall= (Button) findViewById(R.id.actualizar_btn);//Update button
+
+            callView1.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    ArrayList<CursoVirtual> cursosVirtuales = getCursosVirtuales();
+                    Intent intent = new Intent(MainActivity.this, CursosVirtuales.class);
+                    intent.putExtra("CURSOS_VIRTUALES", cursosVirtuales);
+                    startActivity(intent);
+                }
+            });
+
+            callView2.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                    intent.putExtra("URL_PARAMETER", SERVICIO2_URL);
+                    startActivity(intent);
+                }
+            });
+
+            callView3.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                    intent.putExtra("URL_PARAMETER", SERVICIO3_URL);
+                    startActivity(intent);
+                }
+            });
+
+            callView4.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
+                    intent.putExtra("URL_PARAMETER", SERVICIO4_URL);
+                    startActivity(intent);
+                }
+            });
+
+            callView5.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToCall = new Intent(MainActivity.this, CallActivity.class);
+                    intentToCall.putExtra("CONVOCATORIAS", convocatorias);
+                    startActivity(intentToCall);
+                }
+            });
+
+            callView6.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToForm = new Intent(MainActivity.this, Call_Form1Activity.class);
+                    intentToForm.putExtra("TRAMITE", tramite);
+                    startActivity(intentToForm);
+                }
+            });
+
+            callView7.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToDeals1 = new Intent(MainActivity.this, DealsActivity.class);
+                    intentToDeals1.putExtra("OFERTA", oferta1);
+                    startActivity(intentToDeals1);
+                }
+            });
+
+            callView8.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToDeals2 = new Intent(MainActivity.this, DealsActivity.class);
+                    intentToDeals2.putExtra("OFERTA", oferta2);
+                    startActivity(intentToDeals2);
+                }
+            });
+
+            callView9.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToDeals3 = new Intent(MainActivity.this, DealsActivity.class);
+                    intentToDeals3.putExtra("OFERTA", oferta3);
+                    startActivity(intentToDeals3);
+                }
+            });
+
+            callView10.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToDeals4 = new Intent(MainActivity.this, DealsActivity.class);
+                    intentToDeals4.putExtra("OFERTA", oferta4);
+                    startActivity(intentToDeals4);
+                }
+            });
+
+            searchBtn.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    String textToSearch = String.valueOf(searchText.getText());
+                    Intent intentToMainSearch = new Intent(MainActivity.this, MainSearch.class);
+                    intentToMainSearch.putExtra("TEXTO_BUSCAR", textToSearch);
+                    startActivity(intentToMainSearch);
+                }
+            });
+
+            AboutCall.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToAbout = new Intent(MainActivity.this, AboutActivity.class);
+                    startActivity(intentToAbout);
+                }
+            });
+
+            UpdateCall.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "La información se está actualizando.", Toast.LENGTH_LONG).show();
+                    db.initDataTable(hmConvocatorias);
+                    db.initDataTable(hmOfertas);
+                    db.initDataTable(hmPasosOfertas);
+                    db.initDataTable(hmServicios);
+                    db.initDataTable(hmCursosVirt);
+                }
+            });
+
+          AboutCall.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Intent intentToAbout = new Intent(MainActivity.this, AboutActivity.class);
+                    startActivity(intentToAbout);
+                }
+            });
+
+            UpdateCall.setOnClickListener(new View.OnClickListener() {
+                public void onClick(View v) {
+                    Toast.makeText(MainActivity.this, "La información se está actualizando.", Toast.LENGTH_LONG).show();
+                    db.initDataTable(hmConvocatorias);
+                    db.initDataTable(hmOfertas);
+                    db.initDataTable(hmPasosOfertas);
+                    db.initDataTable(hmServicios);
+                    db.initDataTable(hmCursosVirt);
+                }
+            });
+
         } else {
-            tramite = initTramite;
-        }
 
-        oferta1 = ofertas.get(0);
-        oferta2 = ofertas.get(1);
-        oferta3 = ofertas.get(2);
-        oferta4 = ofertas.get(3);
-
-        searchText = (EditText) findViewById(R.id.editText);
-        searchBtn = (Button) findViewById(R.id.buscar_button);
-
-        callView1= (Button) findViewById(R.id.row1_button1);//row1
-        callView2= (Button) findViewById(R.id.row1_button2);//row1
-        callView3= (Button) findViewById(R.id.row2_button1);//row2
-        callView4= (Button) findViewById(R.id.row2_button2);//row2
-
-        callView5= (Button) findViewById(R.id.row3_button1);//row3
-
-
-        Integer ANDROID_VERSION = android.os.Build.VERSION.SDK_INT;
-        Log.d("ANDROID-VERSION", "=====>" + ANDROID_VERSION);
-
-        if(ANDROID_VERSION >= 11){
-            Log.d("Version-validator", "Version superior a 10");
-            Timer myTimer = new Timer();
-            myTimer.schedule(new TimerTask() {
-                @Override
-                public void run() {
-                    runOnUiThread(new Runnable() {
-                        public void run() {
-                            new AsyncWS().execute();
+            AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
+            alertDialogBuilder.setTitle("Atención");
+            alertDialogBuilder
+                    .setMessage("Debe tener una conexión a de datos ó internet.")
+                    .setCancelable(false)
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            Intent i = getBaseContext().getPackageManager()
+                                    .getLaunchIntentForPackage( getBaseContext().getPackageName() );
+                            i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+                            startActivity(i);
                         }
                     });
-                }
-            }, 0, 5000);
-        }else{
-            Log.d("Version-validator", "Version igual o menor a 10");
-            Random randomGenerator = new Random();
-            int index = randomGenerator.nextInt(convocatorias.size());
-            callView5.setText(convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
-            Log.d(MainActivity.class.getName(), convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
 
-            Toast toast = Toast.makeText(MainActivity.this,"Su versión de Android no soporta algunas funciones avanzadas.", Toast.LENGTH_LONG);
-            toast.setGravity(Gravity.CENTER, 0, 0);
-            toast.show();
+            AlertDialog alertDialog = alertDialogBuilder.create();
+            alertDialog.show();
+
         }
 
-        callView6= (Button) findViewById(R.id.row4_button1);//row4
-        callView7= (Button) findViewById(R.id.row5_button1);//row5
-        callView8= (Button) findViewById(R.id.row5_button2);//row5
-        callView9= (Button) findViewById(R.id.row6_button1);//row6
-        callView10= (Button) findViewById(R.id.row6_button2);//row6
-        AboutCall= (Button) findViewById(R.id.acercade_btn);//About button
-        UpdateCall= (Button) findViewById(R.id.actualizar_btn);//Update button
 
-        callView1.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                ArrayList<CursoVirtual> cursosVirtuales = getCursosVirtuales();
-                Intent intent = new Intent(MainActivity.this, CursosVirtuales.class);
-                intent.putExtra("CURSOS_VIRTUALES", cursosVirtuales);
-                startActivity(intent);
-            }
-        });
-
-        callView2.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
-                intent.putExtra("URL_PARAMETER", SERVICIO2_URL);
-                startActivity(intent);
-            }
-        });
-
-        callView3.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
-                intent.putExtra("URL_PARAMETER", SERVICIO3_URL);
-                startActivity(intent);
-            }
-        });
-
-        callView4.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intent = new Intent(MainActivity.this, WebViewActivity.class);
-                intent.putExtra("URL_PARAMETER", SERVICIO4_URL);
-                startActivity(intent);
-            }
-        });
-
-        callView5.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentToCall = new Intent(MainActivity.this, CallActivity.class);
-                intentToCall.putExtra("CONVOCATORIAS", convocatorias);
-                startActivity(intentToCall);
-            }
-        });
-
-        callView6.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentToForm = new Intent(MainActivity.this, Call_Form1Activity.class);
-                intentToForm.putExtra("TRAMITE", tramite);
-                startActivity(intentToForm);
-            }
-        });
-
-        callView7.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentToDeals1 = new Intent(MainActivity.this, DealsActivity.class);
-                intentToDeals1.putExtra("OFERTA", oferta1);
-                startActivity(intentToDeals1);
-            }
-        });
-
-        callView8.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentToDeals2 = new Intent(MainActivity.this, DealsActivity.class);
-                intentToDeals2.putExtra("OFERTA", oferta2);
-                startActivity(intentToDeals2);
-            }
-        });
-
-        callView9.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentToDeals3 = new Intent(MainActivity.this, DealsActivity.class);
-                intentToDeals3.putExtra("OFERTA", oferta3);
-                startActivity(intentToDeals3);
-            }
-        });
-
-        callView10.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentToDeals4 = new Intent(MainActivity.this, DealsActivity.class);
-                intentToDeals4.putExtra("OFERTA", oferta4);
-                startActivity(intentToDeals4);
-            }
-        });
-
-        searchBtn.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                String textToSearch = String.valueOf(searchText.getText());
-                Intent intentToMainSearch = new Intent(MainActivity.this, MainSearch.class);
-                intentToMainSearch.putExtra("TEXTO_BUSCAR", textToSearch);
-                startActivity(intentToMainSearch);
-            }
-        });
-
-        AboutCall.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Intent intentToAbout = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intentToAbout);
-            }
-        });
-
-        UpdateCall.setOnClickListener(new View.OnClickListener() {
-            public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "La información se está actualizando.", Toast.LENGTH_LONG).show();
-                db.initDataTable(hmConvocatorias);
-                db.initDataTable(hmOfertas);
-                db.initDataTable(hmPasosOfertas);
-                db.initDataTable(hmServicios);
-                db.initDataTable(hmCursosVirt);
-                db.initDataTable(hmDepartamentos);
-            }
-        });
     }
 
     private JSONArray parsePasosOfertasJsonText(String jsonText) {
@@ -380,11 +439,27 @@ public class MainActivity extends ActionBarActivity{
             departamentos.add(new Departamento(
                     Integer.parseInt(d.get("autoId").toString()),
                     d.get("nombreDepartamento").toString()
+
             ));
         }
 
         this.db.close();
         return departamentos;
+    }
+
+    private ArrayList<Municipio> getMunicipio() {
+        ArrayList municipios = new ArrayList();
+        ArrayList<HashMap> data = db.getAllData(MUNICIPIOS_TABLE);
+        for (HashMap d : data) {
+            municipios.add(new Municipio(
+                    Integer.parseInt(d.get("autoId").toString()),
+                    d.get("nombreMunicipio").toString(),
+                    d.get("departamento").toString()
+            ));
+        }
+
+        this.db.close();
+        return municipios;
     }
 
 
@@ -525,6 +600,23 @@ public class MainActivity extends ActionBarActivity{
         protected void onPostExecute(Void result) {
             Log.d("Terminando Thread Convocatoria", "3.->Terminando Thread Convocatoria");
         }
+    }
+
+    public Boolean checkConx(Context ctx){
+        ConnectivityManager conMgr = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo i = conMgr.getActiveNetworkInfo();
+        if (i == null)
+            return false;
+        if (!i.isConnected())
+            return false;
+        if (!i.isAvailable())
+            return false;
+        return true;
+    }
+
+    @Override
+    public void onBackPressed() {
+        return;
     }
 
 }

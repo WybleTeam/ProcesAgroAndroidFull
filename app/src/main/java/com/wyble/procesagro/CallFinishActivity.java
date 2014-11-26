@@ -52,9 +52,15 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
         tramite = (Tramite) dataFromPaso6;
 
         justificacion = (EditText) findViewById(R.id.justificacion);
+        if (tramite.getPerdidaDIN() <= 0) {
+            justificacion.setText(null);
+            justificacion.setEnabled(false);
+            justificacion.setFocusable(false);
+            justificacion.setKeyListener(null);
+        } else {
+            justificacion.setText(tramite.getJustificacion());
+        }
         //terminos = (CheckBox) findViewById(R.id.terminos);
-
-        justificacion.setText(tramite.getJustificacion());
         //terminos.setChecked(tramite.getTerminos());
 
         finish= (Button) findViewById(R.id.endButt);
@@ -63,17 +69,20 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
 
     @Override
     public void onClick(View v) {
-
-        tramite.paso7(justificacion.getText().toString());
         String justificacionString = justificacion.getText().toString().trim();
+        if (tramite.getPerdidaDIN() > 0) {
+            tramite.paso7(justificacionString);
+        } else {
+            tramite.paso7("sin_justificacion.");
+        }
 
         Boolean conx = this.checkConx(context);
         Log.d("xxxxxxx", "conx : "+ conx );
 
         if(conx == true){
-            if(justificacionString.isEmpty()){
+            if(tramite.getPerdidaDIN() > 0 && justificacionString.isEmpty()){
                 Toast.makeText(CallFinishActivity.this, "Ingrese una justificación para continuar.", Toast.LENGTH_SHORT).show();
-            }else{
+            } else {
                 //trigger async task
                 new AsyncSaveData().execute();
             }

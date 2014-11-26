@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -38,6 +39,7 @@ public class DealsActivity extends ActionBarActivity {
 
         tituloOferta.setText(oferta.getTitulo());
         descripcionOferta.setText(oferta.getDescripcion());
+        descripcionOferta.setMovementMethod(new ScrollingMovementMethod());
 
         CheckAdapter mAdapter = new CheckAdapter(this, R.layout.check_list_item, oferta.getPasosOferta());
         pasosOfertaListView = (ListView) findViewById(R.id.pasoslistView);
