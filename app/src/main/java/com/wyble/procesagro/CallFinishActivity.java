@@ -83,8 +83,12 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
             if(tramite.getPerdidaDIN() > 0 && justificacionString.isEmpty()){
                 Toast.makeText(CallFinishActivity.this, "Ingrese una justificación para continuar.", Toast.LENGTH_SHORT).show();
             } else {
-                //trigger async task
-                new AsyncSaveData().execute();
+                if (justificacionString.length() < 20 || justificacionString.length() > 200) {
+                    Toast.makeText(CallFinishActivity.this, "La justificación debe tener al menos 20 letras y máximo 200.", Toast.LENGTH_SHORT).show();
+                    justificacion.requestFocus();
+                } else {
+                    new AsyncSaveData().execute();
+                }
             }
         }else{
             Toast.makeText(context, "Conexión a internet no encontrada. Intente nuevamente..." , Toast.LENGTH_SHORT).show();

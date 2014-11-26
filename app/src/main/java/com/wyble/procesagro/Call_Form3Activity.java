@@ -54,19 +54,34 @@ public class Call_Form3Activity extends ActionBarActivity {
 
                     Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();
                 }else{
-                    tramite.paso3(nombre_solic_v, cedula_solic_v, telefono_solic_v, celular_solic_v);
 
-                    HashMap hmTramite = new HashMap();
-                    hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
+                    if (nombre_solic_v.length() < 7 || nombre_solic_v.length() > 50) {
+                        Toast.makeText(context, "El nombre solicitante debe tener al menos 7 letras y máximo 50 letras", Toast.LENGTH_SHORT).show();
+                        nombre_solic.requestFocus();
+                    } else if (telefono_solic_v.length() < 6 || telefono_solic_v.length() > 10) {
+                        Toast.makeText(context, "El teléfono solicitante debe tener entre 6 y 10 números", Toast.LENGTH_SHORT).show();
+                        telefono_solic.requestFocus();
+                    } else if (celular_solic_v.length() < 10 || celular_solic_v.length() > 10) {
+                        Toast.makeText(context, "El celular solicitante debe tener 10 números", Toast.LENGTH_SHORT).show();
+                        celular_solic.requestFocus();
+                    } else {
 
-                    ArrayList<HashMap> tables = new ArrayList<HashMap>();
-                    tables.add(hmTramite);
-                    DB db = new DB(context, tables);
-                    db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
+                        tramite.paso3(nombre_solic_v, cedula_solic_v, telefono_solic_v, celular_solic_v);
 
-                    Intent intent = new Intent(Call_Form3Activity.this, Call_Form4Activity.class);
-                    intent.putExtra("TRAMITE_PASO3", tramite);
-                    startActivity(intent);
+                        HashMap hmTramite = new HashMap();
+                        hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
+
+                        ArrayList<HashMap> tables = new ArrayList<HashMap>();
+                        tables.add(hmTramite);
+                        DB db = new DB(context, tables);
+                        db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
+
+                        Intent intent = new Intent(Call_Form3Activity.this, Call_Form4Activity.class);
+                        intent.putExtra("TRAMITE_PASO3", tramite);
+                        startActivity(intent);
+
+                    }
+
                 }
             }
         });

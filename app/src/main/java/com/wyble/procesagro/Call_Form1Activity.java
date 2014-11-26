@@ -65,30 +65,45 @@ public class Call_Form1Activity extends ActionBarActivity {
 
                     Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();
                 }else{
-                            tramite.paso1(ica_v,
-                                    finca_v,
-                                    propietario_v,
-                                    cedula_prop_v,
-                                    telefono_prop_v,
-                                    celular_prop_v);
 
-                    HashMap hmTramite = new HashMap();
-                    hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
-
-                    ArrayList<HashMap> tables = new ArrayList<HashMap>();
-                    tables.add(hmTramite);
-                    db = new DB(context, tables);
-                    if (tramite.getId() == 0) {
-                        db.insertData(TRAMITE_TABLE, tramite.toJSONArray());
-                        ArrayList<Tramite> tramites = getTramites();
-                        tramite = tramites.get(0);
+                    if (finca_v.length() < 4 || finca_v.length() > 30) {
+                        Toast.makeText(context, "El nombre finca debe tener al menos 4 letras y máximo 30 letras", Toast.LENGTH_SHORT).show();
+                        finca.requestFocus();
+                    } else if (propietario_v.length() < 7 || propietario_v.length() > 50) {
+                        Toast.makeText(context, "El nombre propietario debe tener al menos 7 letras y máximo 50 letras", Toast.LENGTH_SHORT).show();
+                        propietario.requestFocus();
+                    } else if (telefono_prop_v.length() < 6 || telefono_prop_v.length() > 10) {
+                        Toast.makeText(context, "El teléfono propietario debe tener entre 6 y 10 números", Toast.LENGTH_SHORT).show();
+                        telefono_prop.requestFocus();
+                    } else if (celular_prop_v.length() < 10 || celular_prop_v.length() > 10) {
+                        Toast.makeText(context, "El celular propietario debe tener 10 números", Toast.LENGTH_SHORT).show();
+                        celular_prop.requestFocus();
                     } else {
-                        db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
-                    }
+                        tramite.paso1(ica_v,
+                                finca_v,
+                                propietario_v,
+                                cedula_prop_v,
+                                telefono_prop_v,
+                                celular_prop_v);
 
-                    Intent intent = new Intent(Call_Form1Activity.this, Call_Form2Activity.class);
-                    intent.putExtra("TRAMITE_PASO1", tramite);
-                    startActivity(intent);
+                        HashMap hmTramite = new HashMap();
+                        hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
+
+                        ArrayList<HashMap> tables = new ArrayList<HashMap>();
+                        tables.add(hmTramite);
+                        db = new DB(context, tables);
+                        if (tramite.getId() == 0) {
+                            db.insertData(TRAMITE_TABLE, tramite.toJSONArray());
+                            ArrayList<Tramite> tramites = getTramites();
+                            tramite = tramites.get(0);
+                        } else {
+                            db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
+                        }
+
+                        Intent intent = new Intent(Call_Form1Activity.this, Call_Form2Activity.class);
+                        intent.putExtra("TRAMITE_PASO1", tramite);
+                        startActivity(intent);
+                    }
                 }
             }
         });
