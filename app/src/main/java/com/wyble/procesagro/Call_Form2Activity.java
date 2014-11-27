@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -28,6 +29,7 @@ public class Call_Form2Activity extends ActionBarActivity {
     private Button form2_next;
     //private EditText municipio, departamento;
     private Spinner municipio, departamento;
+    private EditText vereda;
     Context context= this;
     private static final String TRAMITE_TABLE = "tramites";
     private String iddepartamento = null;
@@ -50,6 +52,7 @@ public class Call_Form2Activity extends ActionBarActivity {
 
         departamento = (Spinner) findViewById(R.id.departamento);
         municipio = (Spinner) findViewById(R.id.municipio);
+        vereda = (EditText) findViewById(R.id.vereda);
 
         ArrayAdapter<Municipio> adaptadorMun =
                 new ArrayAdapter<Municipio>(Call_Form2Activity.this, android.R.layout.simple_list_item_1,getMunicipio());
@@ -78,12 +81,13 @@ public class Call_Form2Activity extends ActionBarActivity {
                 //final String departamento_v = departamento.getText().toString().trim();
                 String municipio_v = municipio.getSelectedItem().toString();
                 String departamento_v = departamento.getSelectedItem().toString();
+                final String vereda_v = vereda.getText().toString().trim();
                 Log.d("//log", "//log" + municipio_v + " - " + departamento_v);
 
-                if(municipio_v.equals("Seleccione un municipio") || departamento_v.equals("Seleccione un departamento")){
-                    Toast.makeText(context, "Seleccione un departamento y municipio.", Toast.LENGTH_SHORT).show();
+                if(municipio_v.equals("Seleccione un municipio") || departamento_v.equals("Seleccione un departamento") || vereda_v.equals("Escribe una vereda")){
+                    Toast.makeText(context, "Seleccione un departamento, municipio y vereda.", Toast.LENGTH_SHORT).show();
                 }else{
-                    tramite.paso2(municipio_v, departamento_v);
+                    tramite.paso2(municipio_v, departamento_v, vereda_v);
 
                     HashMap hmTramite = new HashMap();
                     hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());

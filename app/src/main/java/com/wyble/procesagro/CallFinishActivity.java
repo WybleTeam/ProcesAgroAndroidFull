@@ -167,6 +167,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
             fields.add(Integer.toString(tramite.getCompra()));
             fields.add(Integer.toString(tramite.getPerdidaDIN()));
             fields.add(tramite.getJustificacion());
+            fields.add(tramite.getVereda());
 
             String complete_string = TRAMITE_URL + join(fields, "/");
             Log.d("//url long", "//url long : "+ complete_string );

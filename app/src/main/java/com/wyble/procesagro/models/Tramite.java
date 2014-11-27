@@ -37,8 +37,10 @@ public class Tramite implements Serializable {
     private int nacimiento;
     private int compra;
     private int perdidaDIN;
+    private String vereda;
     private String justificacion;
     private Boolean terminos;
+
 
     public Tramite() {
         this.id = 0;
@@ -68,6 +70,7 @@ public class Tramite implements Serializable {
         this.perdidaDIN = 0;
         this.justificacion = "";
         this.terminos = Boolean.FALSE;
+        this.vereda = null;
     }
 
     public void paso1(String ica, String nombreFinca, String nombrePropietario, String cedulaPropietario, String fijoPropietario, String celularPropietario) {
@@ -79,9 +82,12 @@ public class Tramite implements Serializable {
         this.celularPropietario = celularPropietario;
     }
 
-    public void paso2(String municipio, String departamento) {
+
+    public void paso2(String municipio, String departamento, String vereda) {
         this.municipio = municipio;
         this.departamento = departamento;
+        this.vereda = vereda;
+
     }
 
     public void paso3(String nombreSolicitante, String cedulaSolicitante, String fijoSolicitante, String celularSolicitante) {
@@ -155,6 +161,7 @@ public class Tramite implements Serializable {
             obj.put("jusPerdidaDin", this.getPerdidaDIN());
             obj.put("justificacion", this.getJustificacion());
             obj.put("terminos", this.getTerminos());
+            obj.put("vereda", this.getVereda());
         } catch (JSONException e) {
             e.printStackTrace();
         }
@@ -273,6 +280,10 @@ public class Tramite implements Serializable {
         return justificacion;
     }
 
+    public String getVereda() {
+        return vereda;
+    }
+
     public Boolean getTerminos() {
         return terminos;
     }
@@ -284,6 +295,8 @@ public class Tramite implements Serializable {
     public void setIca(String ica) {
         this.ica = ica;
     }
+
+
 
     public void setNombreFinca(String nombreFinca) {
         this.nombreFinca = nombreFinca;
@@ -384,6 +397,9 @@ public class Tramite implements Serializable {
     public void setTerminos(Boolean terminos) {
         this.terminos = terminos;
     }
+
+    public void setVereda(String vereda) { this.vereda = vereda; }
+
 
     public Boolean validaSumaBovinosBufalinosMotivos() {
         Boolean result = false;
