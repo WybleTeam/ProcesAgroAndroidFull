@@ -53,7 +53,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
 
         justificacion = (EditText) findViewById(R.id.justificacion);
         if (tramite.getPerdidaDIN() <= 0) {
-            justificacion.setText("_");
+            justificacion.setText("=====NO APLICA JUSTIFICACION======");
             justificacion.setEnabled(false);
             justificacion.setFocusable(false);
             justificacion.setKeyListener(null);
