@@ -40,7 +40,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     private Context context= this;
     ProgressDialog mProgressDialog;
 
-    String TRAMITE_URL = "http://procesagro.tucompualdia.com/crearFormulario/";
+    String TRAMITE_URL = "http://154.70.153.108/proyectos/procesAgroWeb/web/app.php/crearFormulario/";
     private static final String TRAMITE_TABLE = "tramites";
 
     @Override
@@ -53,7 +53,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
 
         justificacion = (EditText) findViewById(R.id.justificacion);
         if (tramite.getPerdidaDIN() <= 0) {
-            justificacion.setText(null);
+            justificacion.setText("_");
             justificacion.setEnabled(false);
             justificacion.setFocusable(false);
             justificacion.setKeyListener(null);

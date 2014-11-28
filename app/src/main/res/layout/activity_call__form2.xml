@@ -73,13 +73,15 @@
             android:layout_marginTop="@dimen/activity_vertical_margin"
             android:hint="Municipio o Vereda" />-->
 
-        <TextView
-            android:layout_width="fill_parent"
+        <EditText
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:hint="Vereda"
+            android:inputType="textCapWords|textPersonName"
+            android:ems="10"
+            android:maxLength="30"
             android:id="@+id/vereda"
-            android:layout_weight="0.11"
-            android:inputType="textCapSentences" />
+            android:layout_gravity="center_horizontal"
+            android:hint="Vereda" />
 
         <Button
             android:id="@+id/form2_next"

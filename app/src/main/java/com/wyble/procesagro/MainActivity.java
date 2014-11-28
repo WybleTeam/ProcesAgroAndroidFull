@@ -48,19 +48,19 @@ public class MainActivity extends ActionBarActivity{
 
     private static final String SERVICIO4_URL = "http://www.siembra.gov.co/";
 
-    private static final String CONVOCATORIAS_URL = "http://tucompualdia.com/aplicaciones/procesAgroWebService/convocatorias.php";
+    private static final String CONVOCATORIAS_URL = "http://154.70.153.108/proyectos/webservice/convocatorias.php";
 
-    private static final String OFERTAS_URL = "http://tucompualdia.com/aplicaciones/procesAgroWebService/ofertasinstitucionales.php";
+    private static final String OFERTAS_URL = "http://154.70.153.108/proyectos/webservice/ofertasinstitucionales.php";
 
-    private static final String PASOS_OFERTAS_URL = "http://tucompualdia.com/aplicaciones/procesAgroWebService/pasosofertas.php";
+    private static final String PASOS_OFERTAS_URL = "http://154.70.153.108/proyectos/webservice/pasosofertas.php";
 
-    private static final String SERVICIOS_URL = "http://tucompualdia.com/aplicaciones/procesAgroWebService/servicios.php";
+    private static final String SERVICIOS_URL = "http://154.70.153.108/proyectos/webservice/servicios.php";
 
-    private static final String CURSOS_VIRTUALES_URL = "http://tucompualdia.com/aplicaciones/procesAgroWebService/cursosvirtuales.php";
+    private static final String CURSOS_VIRTUALES_URL = "http://154.70.153.108/proyectos/webservice/cursosvirtuales.php";
 
-    private static final String DEPARTAMENTOS_URL = "http://procesagro.tucompualdia.com/departamentos";
+    private static final String DEPARTAMENTOS_URL = "http://154.70.153.108/proyectos/procesAgroWeb/web/app.php/departamentos";
 
-    private static final String MUNICIPIOS_URL = "http://procesagro.tucompualdia.com/municipios/";
+    private static final String MUNICIPIOS_URL = "http://154.70.153.108/proyectos/procesAgroWeb/web/app.php/municipios/";
 
     private static final String CONVOCATORIAS_TABLE = "convocatorias";
 
