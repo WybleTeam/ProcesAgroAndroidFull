@@ -41,21 +41,34 @@ public class Call_Form5Activity extends ActionBarActivity {
         bufalino3 = (EditText) findViewById(R.id.bufalino3);
         bufalino4 = (EditText) findViewById(R.id.bufalino4);
 
-        bufalino1.setText(String.valueOf(tramite.getMenor1Bufalino()));
-        bufalino2.setText(String.valueOf(tramite.getEntre12Bufalino()));
-        bufalino3.setText(String.valueOf(tramite.getEntre23Bufalino()));
-        bufalino4.setText(String.valueOf(tramite.getMayor3Bufalino()));
+        //bufalino1.setText(String.valueOf(tramite.getMenor1Bufalino()));
+        //bufalino2.setText(String.valueOf(tramite.getEntre12Bufalino()));
+        //bufalino3.setText(String.valueOf(tramite.getEntre23Bufalino()));
+        //bufalino4.setText(String.valueOf(tramite.getMayor3Bufalino()));
 
         form5_next = (Button) findViewById(R.id.form5_next);
         form5_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String bufalino1_v= bufalino1.getText().toString().trim();
-                final String bufalino2_v= bufalino2.getText().toString().trim();
-                final String bufalino3_v= bufalino3.getText().toString().trim();
-                final String bufalino4_v= bufalino4.getText().toString().trim();
-                if(bufalino1_v.equals("") || bufalino2_v.equals("") || bufalino3_v.equals("") || bufalino4_v.equals("")){
-                    Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();
-                }else {
+
+
+                String bufalino1_v= bufalino1.getText().toString().trim();
+                if(bufalino1_v.equals("")){
+                    bufalino1_v = "0";
+                }
+                String bufalino2_v= bufalino2.getText().toString().trim();
+                if(bufalino2_v.equals("")){
+                    bufalino2_v = "0";
+                }
+                String bufalino3_v= bufalino3.getText().toString().trim();
+                if(bufalino3_v.equals("")){
+                    bufalino3_v = "0";
+                }
+                String bufalino4_v= bufalino4.getText().toString().trim();
+                if(bufalino4_v.equals("")){
+                    bufalino4_v = "0";
+                }
+
+
                     tramite.paso5(Integer.parseInt(bufalino1_v),
                             Integer.parseInt(bufalino2_v),
                             Integer.parseInt(bufalino3_v),
@@ -81,7 +94,7 @@ public class Call_Form5Activity extends ActionBarActivity {
                     }else{
                         Toast.makeText(Call_Form5Activity.this, "Ingrese al menos un Bovino o Bufalino antes de continuar." , Toast.LENGTH_SHORT).show();
                     }
-                }
+
             }
         });
     }

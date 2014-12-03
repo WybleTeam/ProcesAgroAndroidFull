@@ -119,8 +119,7 @@
                         android:layout_gravity="center_horizontal"
                         android:ems="10"
                         android:gravity="center_vertical|center_horizontal"
-                        android:inputType="number"
-                        android:text="0" />
+                        android:inputType="number" />
 
                     <EditText
                         android:id="@+id/bovino2"
@@ -129,8 +128,7 @@
                         android:layout_gravity="center_horizontal"
                         android:ems="10"
                         android:gravity="center_vertical|center_horizontal"
-                        android:inputType="number"
-                        android:text="0" />
+                        android:inputType="number" />
 
                     <EditText
                         android:id="@+id/bovino3"
@@ -139,8 +137,7 @@
                         android:layout_gravity="center_horizontal"
                         android:ems="10"
                         android:gravity="center_vertical|center_horizontal"
-                        android:inputType="number"
-                        android:text="0" />
+                        android:inputType="number" />
 
                     <EditText
                         android:id="@+id/bovino4"
@@ -149,8 +146,7 @@
                         android:layout_gravity="center_horizontal"
                         android:ems="10"
                         android:gravity="center_vertical|center_horizontal"
-                        android:inputType="number"
-                        android:text="0" />
+                        android:inputType="number" />
                 </LinearLayout>
             </LinearLayout>
             <RelativeLayout

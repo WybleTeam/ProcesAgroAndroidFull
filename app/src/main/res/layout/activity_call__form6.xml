@@ -118,7 +118,6 @@
                     android:ems="10"
                     android:id="@+id/primera_vez"
                     android:layout_gravity="center_horizontal"
-                    android:text="0"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <EditText
@@ -128,8 +127,7 @@
                     android:ems="10"
                     android:id="@+id/nacimiento"
                     android:layout_gravity="center_horizontal"
-                    android:gravity="center_vertical|center_horizontal"
-                    android:text="0" />
+                    android:gravity="center_vertical|center_horizontal" />
 
                 <EditText
                     android:layout_width="70dp"
@@ -138,7 +136,6 @@
                     android:ems="10"
                     android:id="@+id/compra_animales"
                     android:layout_gravity="center_horizontal"
-                    android:text="0"
                     android:gravity="center_vertical|center_horizontal" />
 
                 <EditText
@@ -148,7 +145,6 @@
                     android:ems="10"
                     android:id="@+id/perdida_din"
                     android:layout_gravity="center_horizontal"
-                    android:text="0"
                     android:gravity="center_vertical|center_horizontal" />
             </LinearLayout>
         </LinearLayout>

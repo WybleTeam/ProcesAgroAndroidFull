@@ -23,5 +23,6 @@
     <string name="title_activity_cursos_virtuales">Cursos Virtuales</string>
     <string name="title_activity_curso_detalle">Detalle Curso</string>
     <string name="title_activity_intro">ProcesAgro</string>
+    <string name="about">about</string>
 
 </resources>

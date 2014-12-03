@@ -58,7 +58,10 @@ public class Call_Form3Activity extends ActionBarActivity {
                     if (nombre_solic_v.length() < 7 || nombre_solic_v.length() > 50) {
                         Toast.makeText(context, "El nombre solicitante debe tener al menos 7 letras y máximo 50 letras", Toast.LENGTH_SHORT).show();
                         nombre_solic.requestFocus();
-                    } else if (telefono_solic_v.length() < 6 || telefono_solic_v.length() > 10) {
+                    } else if (cedula_solic_v.length() < 7 ) {
+                        Toast.makeText(context, "La cédula del solicitante debe tener mas de 7 números", Toast.LENGTH_SHORT).show();
+                        cedula_solic.requestFocus();
+                    }  else if (telefono_solic_v.length() < 6 || telefono_solic_v.length() > 10) {
                         Toast.makeText(context, "El teléfono solicitante debe tener entre 6 y 10 números", Toast.LENGTH_SHORT).show();
                         telefono_solic.requestFocus();
                     } else if (celular_solic_v.length() < 10 || celular_solic_v.length() > 10) {

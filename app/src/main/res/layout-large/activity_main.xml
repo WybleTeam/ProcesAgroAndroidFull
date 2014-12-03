@@ -60,7 +60,7 @@
             android:padding="9dp">
 
             <EditText
-                android:layout_width="wrap_content"
+                android:layout_width="349dp"
                 android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"

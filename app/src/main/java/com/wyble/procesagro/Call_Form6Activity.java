@@ -37,27 +37,39 @@ public class Call_Form6Activity extends ActionBarActivity {
         compra_animales = (EditText) findViewById(R.id.compra_animales);
         perdida_din = (EditText) findViewById(R.id.perdida_din);
 
-        primera_vez.setText(String.valueOf(tramite.getPrimeraVez()));
-        nacimiento.setText(String.valueOf(tramite.getNacimiento()));
-        compra_animales.setText(String.valueOf(tramite.getCompra()));
-        perdida_din.setText(String.valueOf(tramite.getPerdidaDIN()));
+        //primera_vez.setText(String.valueOf(tramite.getPrimeraVez()));
+        //nacimiento.setText(String.valueOf(tramite.getNacimiento()));
+        //compra_animales.setText(String.valueOf(tramite.getCompra()));
+        //perdida_din.setText(String.valueOf(tramite.getPerdidaDIN()));
 
         form6_next = (Button) findViewById(R.id.form6_next);
         form6_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String primera_vez_v= primera_vez.getText().toString().trim();
-                final String nacimiento_v= nacimiento.getText().toString().trim();
-                final String compra_animales_v= compra_animales.getText().toString().trim();
-                final String perdida_din_v= perdida_din.getText().toString().trim();
-                if(primera_vez_v.equals("") || nacimiento_v.equals("")
-                        || compra_animales_v.equals("") || perdida_din_v.equals("")){
 
-                    Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();
-                }else{
+
+                String primera_vez_v= primera_vez.getText().toString().trim();
+                if(primera_vez_v.equals("")){
+                    primera_vez_v = "0";
+                }
+                String nacimiento_v= nacimiento.getText().toString().trim();
+                if(nacimiento_v.equals("")){
+                    nacimiento_v = "0";
+                }
+                String compra_animales_v= compra_animales.getText().toString().trim();
+                if(compra_animales_v.equals("")){
+                    compra_animales_v = "0";
+                }
+                String perdida_din_v= perdida_din.getText().toString().trim();
+                if(perdida_din_v.equals("")){
+                    perdida_din_v = "0";
+                }
+
                     tramite.paso6(Integer.parseInt(primera_vez_v),
                             Integer.parseInt(nacimiento_v),
                             Integer.parseInt(compra_animales_v),
                             Integer.parseInt(perdida_din_v));
+
+
                     if (tramite.validaSumaBovinosBufalinosMotivos()) {
                         HashMap hmTramite = new HashMap();
                         hmTramite.put(TRAMITE_TABLE, tramite.toJSONArray());
@@ -73,7 +85,7 @@ public class Call_Form6Activity extends ActionBarActivity {
                     } else {
                         Toast.makeText(context, "La suma de las cantidades debe ser igual a la suma total de bovinos y bufalinos.", Toast.LENGTH_LONG).show();
                     }
-                }
+
             }
         });
     }

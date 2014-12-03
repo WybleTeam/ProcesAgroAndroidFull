@@ -3,6 +3,7 @@ package com.wyble.procesagro;
 import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
@@ -53,7 +54,8 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
 
         justificacion = (EditText) findViewById(R.id.justificacion);
         if (tramite.getPerdidaDIN() <= 0) {
-            justificacion.setText("=====NO APLICA JUSTIFICACION======");
+            justificacion.setText("____________________________");
+            justificacion.setTextColor(Color.parseColor("#FFFFFF"));
             justificacion.setEnabled(false);
             justificacion.setFocusable(false);
             justificacion.setKeyListener(null);

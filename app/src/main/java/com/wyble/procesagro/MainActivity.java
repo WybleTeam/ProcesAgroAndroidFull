@@ -570,6 +570,7 @@ public class MainActivity extends ActionBarActivity{
             tramite.setPerdidaDIN(Integer.parseInt(d.get("jusPerdidaDin").toString()));
             tramite.setJustificacion(d.get("justificacion").toString());
             tramite.setTerminos(Boolean.parseBoolean(d.get("terminos").toString()));
+            tramite.setVereda(d.get("vereda").toString());
             tramites.add(tramite);
         }
         db.close();
@@ -589,7 +590,9 @@ public class MainActivity extends ActionBarActivity{
                 public void run() {
                     Random randomGenerator = new Random();
                     int index = randomGenerator.nextInt(convocatorias.size());
-                    callView5.setText(convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
+
+
+                    callView5.setText(convocatorias.get(index).getTitulo().toUpperCase());
                     //Log.d(MainActivity.class.getName(), convocatorias.get(index).getTitulo() + "\n" + convocatorias.get(index).getDescripcionCorta());
                     Log.d("Procesando Thread Convocatoria", "2.->Procesando Thread Convocatoria");
                 }
@@ -614,9 +617,9 @@ public class MainActivity extends ActionBarActivity{
         return true;
     }
 
-    @Override
-    public void onBackPressed() {
-        return;
-    }
+   // @Override
+   // public void onBackPressed() {
+   //     return;
+  //  }
 
 }

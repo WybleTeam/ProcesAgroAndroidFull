@@ -72,6 +72,9 @@ public class Call_Form1Activity extends ActionBarActivity {
                     } else if (propietario_v.length() < 7 || propietario_v.length() > 50) {
                         Toast.makeText(context, "El nombre propietario debe tener al menos 7 letras y máximo 50 letras", Toast.LENGTH_SHORT).show();
                         propietario.requestFocus();
+                    } else if (cedula_prop_v.length() < 7){
+                        Toast.makeText(context, "La cédula del propietario debe tener al menos 7 números", Toast.LENGTH_SHORT).show();
+                        cedula_prop.requestFocus();
                     } else if (telefono_prop_v.length() < 6 || telefono_prop_v.length() > 10) {
                         Toast.makeText(context, "El teléfono propietario debe tener entre 6 y 10 números", Toast.LENGTH_SHORT).show();
                         telefono_prop.requestFocus();
@@ -142,6 +145,7 @@ public class Call_Form1Activity extends ActionBarActivity {
             tramite.setPerdidaDIN(Integer.parseInt(d.get("jusPerdidaDin").toString()));
             tramite.setJustificacion(d.get("justificacion").toString());
             tramite.setTerminos(Boolean.parseBoolean(d.get("terminos").toString()));
+            tramite.setVereda(d.get("vereda").toString());
             tramites.add(tramite);
         }
         db.close();

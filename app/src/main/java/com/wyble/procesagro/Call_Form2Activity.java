@@ -81,12 +81,17 @@ public class Call_Form2Activity extends ActionBarActivity {
                 //final String departamento_v = departamento.getText().toString().trim();
                 String municipio_v = municipio.getSelectedItem().toString();
                 String departamento_v = departamento.getSelectedItem().toString();
-                final String vereda_v = vereda.getText().toString().trim();
+                String vereda_v = vereda.getText().toString().trim();
+                if(vereda_v.equals("")){
+                    vereda_v = "_";
+                }
                 Log.d("//log", "//log" + municipio_v + " - " + departamento_v);
 
                 if(municipio_v.equals("Seleccione un municipio") || departamento_v.equals("Seleccione un departamento") || vereda_v.equals("Escribe una vereda")){
                     Toast.makeText(context, "Seleccione un departamento, municipio y vereda.", Toast.LENGTH_SHORT).show();
                 }else{
+
+
                     tramite.paso2(municipio_v, departamento_v, vereda_v);
 
                     HashMap hmTramite = new HashMap();

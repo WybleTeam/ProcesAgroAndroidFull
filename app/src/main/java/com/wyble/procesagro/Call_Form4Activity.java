@@ -8,7 +8,6 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
-import android.widget.Toast;
 
 import com.wyble.procesagro.helpers.DB;
 import com.wyble.procesagro.models.Tramite;
@@ -38,22 +37,39 @@ public class Call_Form4Activity extends ActionBarActivity {
         bovino3 = (EditText) findViewById(R.id.bovino3);
         bovino4 = (EditText) findViewById(R.id.bovino4);
 
-        bovino1.setText(String.valueOf(tramite.getMenor1Bovinos()));
-        bovino2.setText(String.valueOf(tramite.getEntre12Bovinos()));
-        bovino3.setText(String.valueOf(tramite.getEntre23Bovinos()));
-        bovino4.setText(String.valueOf(tramite.getMayores3Bovinos()));
+        //bovino1.setText(String.valueOf(tramite.getMenor1Bovinos()));
+        //bovino2.setText(String.valueOf(tramite.getEntre12Bovinos()));
+        //bovino3.setText(String.valueOf(tramite.getEntre23Bovinos()));
+        //bovino4.setText(String.valueOf(tramite.getMayores3Bovinos()));
 
         form4_next = (Button) findViewById(R.id.form4_next);
         form4_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                final String bovino1_v= bovino1.getText().toString().trim();
-                final String bovino2_v= bovino2.getText().toString().trim();
-                final String bovino3_v= bovino3.getText().toString().trim();
-                final String bovino4_v= bovino4.getText().toString().trim();
-                if(bovino1_v.equals("") || bovino2_v.equals("") || bovino3_v.equals("") || bovino4_v.equals("")){
 
-                    Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();
-                }else{
+                String bovino1_v= bovino1.getText().toString().trim();
+                if(bovino1_v.equals("")){
+                    bovino1_v = "0";
+                }
+
+                String bovino2_v= bovino2.getText().toString().trim();
+                if(bovino2_v.equals("")){
+                    bovino2_v = "0";
+                }
+                String bovino3_v= bovino3.getText().toString().trim();
+                if(bovino3_v.equals("")){
+                    bovino3_v = "0";
+                }
+                String bovino4_v= bovino4.getText().toString().trim();
+                if(bovino4_v.equals("")){
+                    bovino4_v = "0";
+                }
+               // if(bovino1_v.equals("") || bovino2_v.equals("") || bovino3_v.equals("") || bovino4_v.equals("")){
+
+                //    Toast.makeText(context, "Todos los campos son requeridos.", Toast.LENGTH_SHORT).show();
+               // }else{
+
+
+
                     tramite.paso4(Integer.parseInt(bovino1_v),
                             Integer.parseInt(bovino2_v),
                             Integer.parseInt(bovino3_v),
@@ -74,7 +90,7 @@ public class Call_Form4Activity extends ActionBarActivity {
                     intent.putExtra("TRAMITE_PASO4", tramite);
                     intent.putExtra("total_bovino", sumaBov);
                     startActivity(intent);
-                }
+                //}
             }
         });
     }
