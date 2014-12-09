@@ -7,6 +7,7 @@ import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
@@ -44,6 +45,7 @@ public class ConvDetalle extends ActionBarActivity {
 
         tituloConv.setText(convocatoria.getTitulo());
         descConv.setText(convocatoria.getDescripcionLarga());
+        descConv.setMovementMethod(new ScrollingMovementMethod());
 
         linkUrl.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {

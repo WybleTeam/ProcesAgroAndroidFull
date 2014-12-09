@@ -59,6 +59,6 @@ public class DealsActivity extends ActionBarActivity {
 
     @Override
     public void onBackPressed() {
-        // Do Here what ever you want do on back press;
+        super.onBackPressed();
     }
 }

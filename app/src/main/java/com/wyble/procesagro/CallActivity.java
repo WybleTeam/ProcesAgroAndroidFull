@@ -7,9 +7,9 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.wyble.procesagro.helpers.ConvAdapter;
 import com.wyble.procesagro.models.Convocatoria;
 
 import java.io.Serializable;
@@ -29,7 +29,7 @@ public class CallActivity extends ActionBarActivity {
         final ArrayList<Convocatoria> convocatorias = (ArrayList<Convocatoria>) dataFromMainActivity;
 
         convListView = (ListView) findViewById(R.id.convListView);
-        ArrayAdapter<Convocatoria> arrayAdapter = new ArrayAdapter<Convocatoria>(this, R.layout.convocatoria_text_view, convocatorias);
+        ConvAdapter arrayAdapter = new ConvAdapter(this, R.layout.convocatoria_text_view, convocatorias);
         convListView.setAdapter(arrayAdapter);
 
         convListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/ScrollView02"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:scrollbars="none"
+    android:scrollbars="vertical"
     android:background="#fff"
     android:padding="20dp">
 
@@ -35,14 +36,14 @@
             android:text="Descripción Larga Convocatoria"
             android:id="@+id/descConv"
             android:layout_gravity="center_horizontal"
-            android:lines="8"
             android:layout_marginTop="30dp"
             android:background="@drawable/descripcion_conv"
             android:paddingTop="60dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="20dp"
-            android:maxLines="8" />
+            android:maxLines="8"
+            android:scrollbars="vertical"/>
 
         <Button
             android:layout_width="wrap_content"
