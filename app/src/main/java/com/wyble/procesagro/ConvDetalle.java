@@ -3,7 +3,6 @@ package com.wyble.procesagro;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.content.pm.ResolveInfo;
-import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -58,8 +57,10 @@ public class ConvDetalle extends ActionBarActivity {
         facebookBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
                 Log.d("->","Facebook");
+               // String convo_string = convocatoria.getTitulo().toString();
+                //String convo = convo_string.substring(0,118);
                 //String urlToShare = convocatoria.getUrl();
-                String urlToShare = "@AgronetMADR  ofrece a todos los Colombianos #AgroTeConecta, informate aquí "+convocatoria.getUrl();
+                String urlToShare = "#ProcesAgro , "+ convocatoria.getTitulo() +", mas información "+convocatoria.getUrl();
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 // intent.putExtra(Intent.EXTRA_SUBJECT, "Foo bar"); // NB: has no effect!
@@ -89,7 +90,7 @@ public class ConvDetalle extends ActionBarActivity {
             public void onClick(View v) {
                 Log.d("->","Twitter");
                 //String urlToShare = convocatoria.getUrl();
-                String urlToShare = "@AgronetMADR  ofrece a todos los Colombianos #AgroTeConecta, informate aquí "+convocatoria.getUrl();
+                String urlToShare = "#ProcesAgro , "+convocatoria.getTitulo() +", mas información "+convocatoria.getUrl();
                 Intent intent = new Intent(Intent.ACTION_SEND);
                 intent.setType("text/plain");
                 // intent.putExtra(Intent.EXTRA_SUBJECT, "Foo bar"); // NB: has no effect!

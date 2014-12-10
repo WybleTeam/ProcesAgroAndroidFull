@@ -191,6 +191,13 @@ public class Call_Form2Activity extends ActionBarActivity {
         }
     }
 
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+
+        Intent v = new Intent(this, MainActivity.class);
+        startActivity(v);
+    }
 
 }
 
