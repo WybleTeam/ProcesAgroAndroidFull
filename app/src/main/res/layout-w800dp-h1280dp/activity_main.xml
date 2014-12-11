@@ -14,7 +14,8 @@
         android:orientation="vertical"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/linearLayout">
+        android:id="@+id/linearLayout"
+        android:gravity="center|center_vertical|center_horizontal">
 
         <LinearLayout
             android:orientation="horizontal"
@@ -88,14 +89,14 @@
             android:padding="9dp">
 
             <Button
-                android:layout_width="305dp"
+                android:layout_width="238dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row1_button1"
                 android:background="@drawable/cursos_vituales_xbig"
                 android:layout_margin="3dp" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="410dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row1_button2"
                 android:background="@drawable/agromapas_xbig"
@@ -112,14 +113,14 @@
             android:padding="9dp">
 
             <Button
-                android:layout_width="410dp"
+                android:layout_width="297dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button1"
                 android:background="@drawable/sipsa_xbig"
                 android:layout_margin="3dp" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="372dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button2"
                 android:background="@drawable/siembra_xbig"
@@ -171,14 +172,14 @@
             android:id="@+id/row5"
             android:padding="9dp">
             <Button
-                android:layout_width="451dp"
+                android:layout_width="328dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button1"
                 android:background="@drawable/autorizacion_productos_ecologicos_xbig"
                 android:layout_margin="3dp" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="346dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button2"
                 android:background="@drawable/certificado_incentivo_forestal_xbig"

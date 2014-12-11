@@ -102,22 +102,21 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="fill_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
             android:weightSum="1"
             android:id="@+id/row2"
             android:padding="9dp">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button1"
                 android:background="@drawable/sipsa_xbig"
                 android:layout_margin="3dp" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button2"
                 android:background="@drawable/siembra_xbig"
@@ -169,14 +168,14 @@
             android:id="@+id/row5"
             android:padding="9dp">
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="300dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button1"
                 android:background="@drawable/autorizacion_productos_ecologicos_xbig"
                 android:layout_margin="3dp" />
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="250dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button2"
                 android:background="@drawable/certificado_incentivo_forestal_xbig"

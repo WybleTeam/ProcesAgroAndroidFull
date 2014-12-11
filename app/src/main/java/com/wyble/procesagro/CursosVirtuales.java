@@ -3,13 +3,13 @@ package com.wyble.procesagro;
 import android.annotation.TargetApi;
 import android.content.Intent;
 import android.os.Build;
-import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.app.ActionBarActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.ListView;
 
+import com.wyble.procesagro.helpers.CursoAdapter;
 import com.wyble.procesagro.models.CursoVirtual;
 
 import java.io.Serializable;
@@ -30,7 +30,8 @@ public class CursosVirtuales extends ActionBarActivity {
         final ArrayList<CursoVirtual> cursosVirt = (ArrayList<CursoVirtual>) dataFromMainActivity;
 
         cursosListView = (ListView) findViewById(R.id.cursosListView);
-        ArrayAdapter<CursoVirtual> arrayAdapter = new ArrayAdapter<CursoVirtual>(this, R.layout.convocatoria_text_view, cursosVirt);
+        //ArrayAdapter<CursoVirtual> arrayAdapter = new ArrayAdapter<CursoVirtual>(this, R.layout.convocatoria_text_view, cursosVirt);
+        CursoAdapter arrayAdapter = new CursoAdapter(this, R.layout.curso_virtual_text_view, cursosVirt);
         cursosListView.setAdapter(arrayAdapter);
 
         cursosListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
