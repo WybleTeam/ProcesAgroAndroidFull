@@ -88,7 +88,7 @@
             android:padding="9dp">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="305dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row1_button1"
                 android:background="@drawable/cursos_vituales_xbig"
@@ -112,7 +112,7 @@
             android:padding="9dp">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="410dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button1"
                 android:background="@drawable/sipsa_xbig"
@@ -171,7 +171,7 @@
             android:id="@+id/row5"
             android:padding="9dp">
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="451dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button1"
                 android:background="@drawable/autorizacion_productos_ecologicos_xbig"
@@ -195,7 +195,7 @@
             android:padding="9dp">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="343dp"
                 android:layout_height="wrap_content"
                 android:id="@+id/row6_button1"
                 android:background="@drawable/tarjeta_profesional_xbig"
