@@ -71,34 +71,36 @@ public class Call_Form2Activity extends ActionBarActivity {
         departamento.setAdapter(adaptador);
         departamento.setOnItemSelectedListener(new SpinnerLis());
 
+    if(tramite.getDepartamento().isEmpty()){
 
+    }else {
         String idDepartamento = tramite.getDepartamento();
         String sub_Posicdpto = idDepartamento.substring(0,1);
-        Log.d("sub_dtpo",sub_Posicdpto);
+        Log.d("sub_dtpo", sub_Posicdpto);
         String trim_Posdpto = sub_Posicdpto.trim();
         spinDepa = trim_Posdpto;
-        departamento.setSelection(Integer.parseInt(spinDepa)-1);
+        departamento.setSelection(Integer.parseInt(spinDepa) - 1);
 
         MunicipioSpin = getMunicipio2(spinDepa);
 
-        Integer i=0;
+        Integer i = 0;
         for (Municipio municipio1 : MunicipioSpin = getMunicipio2(spinDepa)) {
 
-            Log.d("recorr","Recorriendo el municipio..."+municipio1.getId()+" "+municipio1.getNombreMunicipio());
+            Log.d("recorr", "Recorriendo el municipio..." + municipio1.getId() + " " + municipio1.getNombreMunicipio());
             String MunEncontrado = municipio1.getNombreMunicipio();
             String Municipio = tramite.getMunicipio();
 
-            if(MunEncontrado.equals(Municipio)){
+            if (MunEncontrado.equals(Municipio)) {
                 municipio.setSelection(i);
-                Log.d("revision","lo encontre ..."+Municipio+" Posicion "+i);
-            }else{
-                Log.d("recor","No encontrado "+tramite.getMunicipio().toString().trim()+"-"+MunEncontrado.trim());
+                Log.d("revision", "lo encontre ..." + Municipio + " Posicion " + i);
+            } else {
+                Log.d("recor", "No encontrado " + tramite.getMunicipio().toString().trim() + "-" + MunEncontrado.trim());
             }
             i = i + 1;
         }
 
         vereda.setText(tramite.getVereda());
-
+    }
 
         form2_next = (Button) findViewById(R.id.form2_next);
         form2_next.setOnClickListener(new View.OnClickListener() {
