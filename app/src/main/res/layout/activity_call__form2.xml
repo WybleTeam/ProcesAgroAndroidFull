@@ -37,14 +37,14 @@
             android:layout_weight="0.11"
             android:gravity="center_vertical|center_horizontal"
             android:text="Ubicación Finca"
-            android:textSize="15dp" />
+            android:textSize="18dp" />
 
         <Spinner
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:id="@+id/departamento"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.11"
+            android:layout_weight="0.04"
             android:spinnerMode="dialog" />
 
         <!--<EditText
@@ -62,7 +62,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/municipio"
             android:layout_gravity="center_horizontal"
-            android:layout_weight="0.11"
+            android:layout_weight="0.06"
             android:spinnerMode="dialog" />
 
        <!-- <EditText

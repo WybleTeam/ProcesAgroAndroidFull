@@ -41,10 +41,26 @@ public class Call_Form5Activity extends ActionBarActivity {
         bufalino3 = (EditText) findViewById(R.id.bufalino3);
         bufalino4 = (EditText) findViewById(R.id.bufalino4);
 
-        //bufalino1.setText(String.valueOf(tramite.getMenor1Bufalino()));
-        //bufalino2.setText(String.valueOf(tramite.getEntre12Bufalino()));
-        //bufalino3.setText(String.valueOf(tramite.getEntre23Bufalino()));
-        //bufalino4.setText(String.valueOf(tramite.getMayor3Bufalino()));
+        if(tramite.getMenor1Bufalino() == 0){
+
+        }else {
+            bufalino1.setText(String.valueOf(tramite.getMenor1Bufalino()));
+        }
+        if(tramite.getEntre12Bufalino() == 0){
+
+        }else {
+            bufalino2.setText(String.valueOf(tramite.getEntre12Bufalino()));
+        }
+        if(tramite.getEntre23Bufalino() == 0){
+
+        }else {
+            bufalino3.setText(String.valueOf(tramite.getEntre23Bufalino()));
+        }
+        if(tramite.getMayor3Bufalino() == 0){
+
+        }else {
+            bufalino4.setText(String.valueOf(tramite.getMayor3Bufalino()));
+        }
 
         form5_next = (Button) findViewById(R.id.form5_next);
         form5_next.setOnClickListener(new View.OnClickListener() {
@@ -108,4 +124,22 @@ public class Call_Form5Activity extends ActionBarActivity {
         sumaBuf = bufalino1_v + bufalino2_v + bufalino3_v + bufalino4_v;
         return sumaBuf;
     }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Serializable dataFromPaso4 = getIntent().getSerializableExtra("TRAMITE_PASO4");
+
+        final Tramite tramite = (Tramite) dataFromPaso4;
+        Intent v = new Intent(this, Call_Form4Activity.class);
+        v.putExtra("TRAMITE_PASO3", tramite);
+        startActivity(v);
+    }
+
 }

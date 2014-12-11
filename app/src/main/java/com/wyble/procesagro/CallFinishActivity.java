@@ -60,7 +60,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
             justificacion.setFocusable(false);
             justificacion.setKeyListener(null);
         } else {
-            justificacion.setText(tramite.getJustificacion());
+            //justificacion.setText(tramite.getJustificacion());
         }
         //terminos = (CheckBox) findViewById(R.id.terminos);
         //terminos.setChecked(tramite.getTerminos());
@@ -73,7 +73,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     public void onClick(View v) {
         String justificacionString = justificacion.getText().toString().trim();
         if (tramite.getPerdidaDIN() > 0) {
-            tramite.paso7(justificacionString);
+            //tramite.paso7(justificacionString);
         } else {
             tramite.paso7("sin_justificacion.");
         }
@@ -203,6 +203,23 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
         protected void onPostExecute(Void result) {
             mProgressDialog.hide();
         }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Serializable dataFromPaso6 = getIntent().getSerializableExtra("TRAMITE_PASO6");
+
+        final Tramite tramite = (Tramite) dataFromPaso6;
+        Intent v = new Intent(this, Call_Form6Activity.class);
+        v.putExtra("TRAMITE_PASO5", tramite);
+        startActivity(v);
     }
 
 }

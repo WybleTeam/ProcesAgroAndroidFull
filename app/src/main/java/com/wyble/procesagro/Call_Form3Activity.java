@@ -24,6 +24,7 @@ public class Call_Form3Activity extends ActionBarActivity {
     Context context= this;
     private static final String TRAMITE_TABLE = "tramites";
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,4 +91,21 @@ public class Call_Form3Activity extends ActionBarActivity {
         });
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Serializable dataFromPaso2 = getIntent().getSerializableExtra("TRAMITE_PASO2");
+
+        final Tramite tramite = (Tramite) dataFromPaso2;
+        Intent intent = new Intent(this, Call_Form2Activity.class);
+        intent.putExtra("TRAMITE_PASO1", tramite);
+        startActivity(intent);
+    }
 }

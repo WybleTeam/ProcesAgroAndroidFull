@@ -35,8 +35,10 @@ public class Call_Form2Activity extends ActionBarActivity {
     private String iddepartamento = null;
     private DB db;
     String id_dpto;
+    String spinDepa;
 
     private ArrayList<HashMap> tables;
+    private ArrayList<Municipio> MunicipioSpin;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +46,7 @@ public class Call_Form2Activity extends ActionBarActivity {
         setContentView(R.layout.activity_call__form2);
 
         Serializable dataFromPaso1 = getIntent().getSerializableExtra("TRAMITE_PASO1");
+
         final Tramite tramite = (Tramite) dataFromPaso1;
 
         tables = new ArrayList<HashMap>();
@@ -54,8 +57,11 @@ public class Call_Form2Activity extends ActionBarActivity {
         municipio = (Spinner) findViewById(R.id.municipio);
         vereda = (EditText) findViewById(R.id.vereda);
 
+
+
         ArrayAdapter<Municipio> adaptadorMun =
                 new ArrayAdapter<Municipio>(Call_Form2Activity.this, android.R.layout.simple_list_item_1,getMunicipio());
+
 
         municipio.setAdapter(adaptadorMun);
 
@@ -66,19 +72,38 @@ public class Call_Form2Activity extends ActionBarActivity {
         departamento.setOnItemSelectedListener(new SpinnerLis());
 
 
+        String idDepartamento = tramite.getDepartamento();
+        String sub_Posicdpto = idDepartamento.substring(0,1);
+        Log.d("sub_dtpo",sub_Posicdpto);
+        String trim_Posdpto = sub_Posicdpto.trim();
+        spinDepa = trim_Posdpto;
+        departamento.setSelection(Integer.parseInt(spinDepa)-1);
 
-        //ArrayList arrayDepa = getDepartamentos();
+        MunicipioSpin = getMunicipio2(spinDepa);
 
-        //municipio.setText(tramite.getMunicipio());
-        //departamento.setText(tramite.getDepartamento());
-        //municipio.setText(tramite.getMunicipio());
-        //departamento.setText(tramite.getDepartamento());
+        Integer i=0;
+        for (Municipio municipio1 : MunicipioSpin = getMunicipio2(spinDepa)) {
+
+            Log.d("recorr","Recorriendo el municipio..."+municipio1.getId()+" "+municipio1.getNombreMunicipio());
+            String MunEncontrado = municipio1.getNombreMunicipio();
+            String Municipio = tramite.getMunicipio();
+
+            if(MunEncontrado.equals(Municipio)){
+                municipio.setSelection(i);
+                Log.d("revision","lo encontre ..."+Municipio+" Posicion "+i);
+            }else{
+                Log.d("recor","No encontrado "+tramite.getMunicipio().toString().trim()+"-"+MunEncontrado.trim());
+            }
+            i = i + 1;
+        }
+
+        vereda.setText(tramite.getVereda());
+
 
         form2_next = (Button) findViewById(R.id.form2_next);
         form2_next.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
-                //final String municipio_v = municipio.getText().toString().trim();
-                //final String departamento_v = departamento.getText().toString().trim();
+
                 String municipio_v = municipio.getSelectedItem().toString();
                 String departamento_v = departamento.getSelectedItem().toString();
                 String vereda_v = vereda.getText().toString().trim();
@@ -141,7 +166,6 @@ public class Call_Form2Activity extends ActionBarActivity {
         return municipios;
     }
 
-
     private ArrayList<Municipio> getMunicipio2(String iddepartamento) {
         ArrayList municipios = new ArrayList();
         ArrayList<HashMap> data = db.getDataByName("municipios","departamento", iddepartamento);
@@ -162,9 +186,13 @@ public class Call_Form2Activity extends ActionBarActivity {
 
         @Override
         public void onItemSelected(AdapterView<?> parent, View view, int pos, long id) {
+            Serializable dataFromPaso1 = getIntent().getSerializableExtra("TRAMITE_PASO1");
+
+            final Tramite tramite = (Tramite) dataFromPaso1;
+
             TextView tex = (TextView) findViewById(R.id.tituloUbicacion);
 
-            tex.setText("has seleccionado "+ departamento.getSelectedItem().toString());
+            tex.setText("DEPARTAMENTO :" + tramite.getDepartamento().toString() +"\n"+"MUNICIPIO: "+tramite.getMunicipio().toString()+"\n"+"VEREDA: " + tramite.getVereda().toString().toUpperCase());
             //cargaSpinnerMunicipio(parent.);
             Log.d("mensaje", "spinner data"+departamento.getSelectedItem().toString());
             String dpto = departamento.getSelectedItem().toString();
@@ -174,6 +202,25 @@ public class Call_Form2Activity extends ActionBarActivity {
             String trim_dpto = sub_dpto.trim();
             id_dpto = trim_dpto;
             cargaSpinnerMunicipio(id_dpto);
+
+
+            MunicipioSpin = getMunicipio2(id_dpto);
+
+            Integer i=0;
+            for (Municipio municipio1 : MunicipioSpin = getMunicipio2(id_dpto)) {
+
+                Log.d("recorr","Recorriendo el municipio..."+municipio1.getId()+" "+municipio1.getNombreMunicipio());
+                String MunEncontrado = municipio1.getNombreMunicipio();
+                String Municipio = tramite.getMunicipio();
+
+                if(MunEncontrado.equals(Municipio)){
+                    municipio.setSelection(i);
+                    Log.d("revision","lo encontre ciclo..."+Municipio+" Posicion "+i);
+                }else{
+                    Log.d("recor","No encontrado "+tramite.getMunicipio().toString().trim()+"-"+MunEncontrado.trim());
+                }
+                i = i + 1;
+            }
         }
 
         private void cargaSpinnerMunicipio(String selectedItemPosition) {
@@ -189,16 +236,30 @@ public class Call_Form2Activity extends ActionBarActivity {
         public void onNothingSelected(AdapterView<?> adapterView) {
 
         }
+
+
+
+    }
+
+
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        Serializable dataFromPaso1 = getIntent().getSerializableExtra("TRAMITE_PASO1");
 
-        Intent v = new Intent(this, MainActivity.class);
-        startActivity(v);
+        final Tramite tramite = (Tramite) dataFromPaso1;
+        Intent intentToForm = new Intent(this, Call_Form1Activity.class);
+        intentToForm.putExtra("TRAMITE", tramite);
+        startActivity(intentToForm);
+
     }
-
 }
 
 

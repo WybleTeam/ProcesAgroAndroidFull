@@ -22,7 +22,7 @@ public class Call_Form1Activity extends ActionBarActivity {
 
     private Button form1_next;
     private EditText ica, finca, propietario, cedula_prop, telefono_prop, celular_prop;
-    final Context context= this;
+    final Context context = this;
     private static final String TRAMITE_TABLE = "tramites";
     private Tramite tramite;
     private DB db;
@@ -35,12 +35,14 @@ public class Call_Form1Activity extends ActionBarActivity {
         Serializable dataFromMenu = getIntent().getSerializableExtra("TRAMITE");
         tramite = (Tramite) dataFromMenu;
 
+
         ica = (EditText) findViewById(R.id.ica);
         finca = (EditText) findViewById(R.id.finca);
         propietario = (EditText) findViewById(R.id.propietario);
         cedula_prop = (EditText) findViewById(R.id.cedula_prop);
         telefono_prop = (EditText) findViewById(R.id.telefono_prop);
         celular_prop = (EditText) findViewById(R.id.celular_prop);
+
 
         ica.setText(tramite.getIca());
         finca.setText(tramite.getNombreFinca());
@@ -82,6 +84,8 @@ public class Call_Form1Activity extends ActionBarActivity {
                         Toast.makeText(context, "El celular propietario debe tener 10 números", Toast.LENGTH_SHORT).show();
                         celular_prop.requestFocus();
                     } else {
+
+
                         tramite.paso1(ica_v,
                                 finca_v,
                                 propietario_v,
@@ -150,5 +154,11 @@ public class Call_Form1Activity extends ActionBarActivity {
         }
         db.close();
         return tramites;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
     }
 }

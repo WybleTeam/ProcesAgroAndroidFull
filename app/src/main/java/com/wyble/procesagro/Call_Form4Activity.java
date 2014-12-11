@@ -24,6 +24,8 @@ public class Call_Form4Activity extends ActionBarActivity {
     Context context= this;
     private static final String TRAMITE_TABLE = "tramites";
 
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +34,33 @@ public class Call_Form4Activity extends ActionBarActivity {
         Serializable dataFromPaso3 = getIntent().getSerializableExtra("TRAMITE_PASO3");
         final Tramite tramite = (Tramite) dataFromPaso3;
 
+
         bovino1 = (EditText) findViewById(R.id.bovino1);
         bovino2 = (EditText) findViewById(R.id.bovino2);
         bovino3 = (EditText) findViewById(R.id.bovino3);
         bovino4 = (EditText) findViewById(R.id.bovino4);
 
-        //bovino1.setText(String.valueOf(tramite.getMenor1Bovinos()));
-        //bovino2.setText(String.valueOf(tramite.getEntre12Bovinos()));
-        //bovino3.setText(String.valueOf(tramite.getEntre23Bovinos()));
-        //bovino4.setText(String.valueOf(tramite.getMayores3Bovinos()));
+
+        if(tramite.getMenor1Bovinos() == 0){
+
+        }else {
+            bovino1.setText(String.valueOf(tramite.getMenor1Bovinos()));
+        }
+        if(tramite.getEntre12Bovinos() == 0){
+
+        }else {
+            bovino2.setText(String.valueOf(tramite.getEntre12Bovinos()));
+        }
+        if(tramite.getEntre23Bovinos() == 0){
+
+        }else {
+            bovino3.setText(String.valueOf(tramite.getEntre23Bovinos()));
+        }
+        if(tramite.getMayores3Bovinos() == 0){
+
+        }else {
+            bovino4.setText(String.valueOf(tramite.getMayores3Bovinos()));
+        }
 
         form4_next = (Button) findViewById(R.id.form4_next);
         form4_next.setOnClickListener(new View.OnClickListener() {
@@ -103,5 +123,22 @@ public class Call_Form4Activity extends ActionBarActivity {
         int bovino4_v = Integer.parseInt(b4);
         sumaBov = bovino1_v + bovino2_v + bovino3_v + bovino4_v;
         return sumaBov;
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        finish();
+    }
+
+    @Override
+    public void onBackPressed() {
+        super.onBackPressed();
+        Serializable dataFromPaso3 = getIntent().getSerializableExtra("TRAMITE_PASO3");
+
+        final Tramite tramite = (Tramite) dataFromPaso3;
+        Intent v = new Intent(this, Call_Form3Activity.class);
+        v.putExtra("TRAMITE_PASO2", tramite);
+        startActivity(v);
     }
 }

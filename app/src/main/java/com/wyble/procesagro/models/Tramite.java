@@ -70,7 +70,7 @@ public class Tramite implements Serializable {
         this.perdidaDIN = 0;
         this.justificacion = "";
         this.terminos = Boolean.FALSE;
-        this.vereda = null;
+        this.vereda = "";
     }
 
     public void paso1(String ica, String nombreFinca, String nombrePropietario, String cedulaPropietario, String fijoPropietario, String celularPropietario) {
