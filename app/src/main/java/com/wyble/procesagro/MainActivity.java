@@ -8,6 +8,8 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.os.StrictMode;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -101,7 +103,6 @@ public class MainActivity extends ActionBarActivity{
     Button callView2;
     Button callView3;
     Button callView4;
-    public Button callView5; //public for access using other Class
     Button callView6;
     Button callView7;
     Button callView8;
@@ -109,6 +110,7 @@ public class MainActivity extends ActionBarActivity{
     Button callView10;
     Button AboutCall;
     Button UpdateCall;
+    public Button callView5; //public for access using other Class
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -163,7 +165,6 @@ public class MainActivity extends ActionBarActivity{
 
             db = new DB(this, tables);
 
-
             convocatorias = this.getConvocatorias();
             ArrayList<Oferta> ofertas = this.getOfertas();
             ArrayList<Tramite> tramites = this.getTramites();
@@ -173,7 +174,6 @@ public class MainActivity extends ActionBarActivity{
             } else {
                 tramite = initTramite;
             }
-
 
             oferta1 = ofertas.get(0);
             oferta2 = ofertas.get(1);
@@ -327,23 +327,31 @@ public class MainActivity extends ActionBarActivity{
 
             UpdateCall.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
-                    Toast.makeText(MainActivity.this, "La información se está actualizando.", Toast.LENGTH_LONG).show();
+                    Toast.makeText(MainActivity.this, "La información se está actualizando...", Toast.LENGTH_SHORT).show();
                     db.initDataTable(hmConvocatorias);
                     db.initDataTable(hmOfertas);
                     db.initDataTable(hmPasosOfertas);
                     db.initDataTable(hmServicios);
                     db.initDataTable(hmCursosVirt);
+
+                    Handler handler = new Handler(Looper.getMainLooper());
+
+                    handler.postDelayed(new Runnable() {
+                        public void run() {
+                            Toast.makeText(MainActivity.this, "Actualización completa.", Toast.LENGTH_SHORT).show();
+                        }
+                    }, 5000);
                 }
             });
 
-          AboutCall.setOnClickListener(new View.OnClickListener() {
+            AboutCall.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Intent intentToAbout = new Intent(MainActivity.this, AboutActivity.class);
                     startActivity(intentToAbout);
                 }
             });
 
-            UpdateCall.setOnClickListener(new View.OnClickListener() {
+            /*UpdateCall.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
                     Toast.makeText(MainActivity.this, "La información se está actualizando.", Toast.LENGTH_LONG).show();
                     db.initDataTable(hmConvocatorias);
@@ -352,14 +360,13 @@ public class MainActivity extends ActionBarActivity{
                     db.initDataTable(hmServicios);
                     db.initDataTable(hmCursosVirt);
                 }
-            });
+            });*/
 
         } else {
-
             AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
             alertDialogBuilder.setTitle("Atención");
             alertDialogBuilder
-                    .setMessage("Debe tener una conexión a de datos ó internet.")
+                    .setMessage("Debe tener una conexión a datos ó internet.")
                     .setCancelable(false)
                     .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
@@ -372,10 +379,7 @@ public class MainActivity extends ActionBarActivity{
 
             AlertDialog alertDialog = alertDialogBuilder.create();
             alertDialog.show();
-
         }
-
-
     }
 
     private JSONArray parsePasosOfertasJsonText(String jsonText) {
@@ -409,7 +413,6 @@ public class MainActivity extends ActionBarActivity{
                     d.get("usuario_id").toString()
             ));
         }
-
         db.close();
         return convocatorias;
     }
@@ -426,7 +429,6 @@ public class MainActivity extends ActionBarActivity{
                     d.get("urlCurso").toString()
             ));
         }
-
         db.close();
         return cursosVirtuales;
     }
@@ -441,7 +443,6 @@ public class MainActivity extends ActionBarActivity{
 
             ));
         }
-
         this.db.close();
         return departamentos;
     }
@@ -619,6 +620,6 @@ public class MainActivity extends ActionBarActivity{
    // @Override
    // public void onBackPressed() {
    //     return;
-  //  }
+   //  }
 
 }

@@ -23,7 +23,7 @@ import org.apache.http.HttpResponse;
 import org.apache.http.StatusLine;
 import org.apache.http.client.ClientProtocolException;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
@@ -60,7 +60,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
             justificacion.setFocusable(false);
             justificacion.setKeyListener(null);
         } else {
-            //justificacion.setText(tramite.getJustificacion());
+            justificacion.setText(tramite.getJustificacion());
         }
         //terminos = (CheckBox) findViewById(R.id.terminos);
         //terminos.setChecked(tramite.getTerminos());
@@ -73,7 +73,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     public void onClick(View v) {
         String justificacionString = justificacion.getText().toString().trim();
         if (tramite.getPerdidaDIN() > 0) {
-            //tramite.paso7(justificacionString);
+            tramite.paso7(justificacionString);
         } else {
             tramite.paso7("sin_justificacion.");
         }
@@ -174,7 +174,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
             String complete_string = TRAMITE_URL + join(fields, "/");
             Log.d("//url long", "//url long : "+ complete_string );
             final HttpClient client = new DefaultHttpClient();
-            final HttpGet httpGet = new HttpGet(complete_string);
+            final HttpPost httpGet = new HttpPost(complete_string);
 
             runOnUiThread(new Runnable() {
                 @Override
@@ -215,7 +215,8 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     public void onBackPressed() {
         super.onBackPressed();
         Serializable dataFromPaso6 = getIntent().getSerializableExtra("TRAMITE_PASO6");
-
+        //tramite.paso7(justificacionString);
+        justificacion.setText(tramite.getJustificacion());
         final Tramite tramite = (Tramite) dataFromPaso6;
         Intent v = new Intent(this, Call_Form6Activity.class);
         v.putExtra("TRAMITE_PASO5", tramite);
