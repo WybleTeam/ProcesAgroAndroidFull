@@ -24,5 +24,8 @@
     <string name="title_activity_curso_detalle">Detalle Curso</string>
     <string name="title_activity_intro">ProcesAgro</string>
     <string name="about">Acerca</string>
+    <string name="play">Play</string>
+    <string name="btnPause">Pause</string>
+    <string name="urlLink">Ver url</string>
 
 </resources>

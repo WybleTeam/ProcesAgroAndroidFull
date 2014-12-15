@@ -2,6 +2,7 @@ package com.wyble.procesagro;
 
 import android.annotation.TargetApi;
 import android.content.Intent;
+import android.media.MediaPlayer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -21,6 +22,10 @@ public class StepsDetailsActivity extends ActionBarActivity {
     private TextView description;
 
     private Button linkBtn;
+    static MediaPlayer mPlayer;
+    Button btnPlay;
+    Button buttonStop;
+    Boolean repro = false;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
     @Override
@@ -45,5 +50,7 @@ public class StepsDetailsActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+
+
     }
 }

@@ -41,6 +41,30 @@
             android:maxLines="5"
             android:scrollbars="vertical"/>
 
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:weightSum="1"
+            android:gravity="center_horizontal">
+
+            <Button
+                android:layout_width="224dp"
+                android:layout_height="wrap_content"
+                android:id="@+id/ofertaLinkUrl2"
+                android:layout_gravity="center_horizontal|left"
+                android:background="@drawable/link_pagina"
+                android:padding="2dp"
+                android:layout_weight="0.42" />
+
+            <Button
+                android:layout_width="57dp"
+                android:layout_height="match_parent"
+                android:id="@+id/btnPlay"
+                android:background="@drawable/play_icon"
+                android:padding="2dp" />
+        </LinearLayout>
+
         <TextView
             android:layout_width="fill_parent"
             android:layout_height="wrap_content"

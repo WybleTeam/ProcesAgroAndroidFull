@@ -109,13 +109,13 @@ public class Call_Form2Activity extends ActionBarActivity {
                 String municipio_v = municipio.getSelectedItem().toString();
                 String departamento_v = departamento.getSelectedItem().toString();
                 String vereda_v = vereda.getText().toString().trim();
-                if(vereda_v.equals("")){
-                    vereda_v = "_";
-                }
+                //if(vereda_v.equals("")){
+                //    vereda_v = "_";
+                //}
                 Log.d("//log", "//log" + municipio_v + " - " + departamento_v);
 
-                if(municipio_v.equals("Seleccione un municipio") || departamento_v.equals("Seleccione un departamento") || vereda_v.equals("Escribe una vereda")){
-                    Toast.makeText(context, "Seleccione un departamento, municipio y vereda.", Toast.LENGTH_SHORT).show();
+                if(vereda_v.equals("")){
+                    Toast.makeText(context, "Escriba una Vereda.", Toast.LENGTH_SHORT).show();
                 }else{
 
 
