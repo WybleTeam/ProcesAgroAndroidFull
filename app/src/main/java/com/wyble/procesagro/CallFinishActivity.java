@@ -10,6 +10,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -28,8 +29,12 @@ import org.apache.http.impl.client.DefaultHttpClient;
 
 import java.io.IOException;
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.HashMap;
+
+import static android.net.Uri.encode;
 
 
 public class CallFinishActivity extends ActionBarActivity implements View.OnClickListener{
@@ -48,7 +53,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call_finish);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         Serializable dataFromPaso6 = getIntent().getSerializableExtra("TRAMITE_PASO6");
         tramite = (Tramite) dataFromPaso6;
 
@@ -144,7 +149,7 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
             db.updateData(TRAMITE_TABLE, tramite.toJSONArray(), tramite.getId());
 
             ArrayList<String> fields = new ArrayList();
-            fields.add(tramite.getIca());
+            fields.add(encode(tramite.getIca(), "UTF-8"));
             fields.add(tramite.getNombreFinca());
             fields.add(tramite.getNombrePropietario());
             fields.add(tramite.getCedulaPropietario());
@@ -171,9 +176,23 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
             fields.add(tramite.getJustificacion());
             fields.add(tramite.getVereda());
 
-            String complete_string = TRAMITE_URL + join(fields, "/");
+            String query = null;
+            try {
+                query = URLEncoder.encode(fields.toString(), "utf-8");
+
+            } catch (UnsupportedEncodingException e) {
+                e.printStackTrace();
+            }
+
+            String complete_string = TRAMITE_URL+join(fields,"/");
+            //String url_completa = complete_string.replaceAll("%2F","/");
             Log.d("//url long", "//url long : "+ complete_string );
+           // Log.d("//url long", "//url completa : "+ url_completa );
+
+
+
             final HttpClient client = new DefaultHttpClient();
+
             final HttpPost httpGet = new HttpPost(complete_string);
 
             runOnUiThread(new Runnable() {
@@ -221,6 +240,24 @@ public class CallFinishActivity extends ActionBarActivity implements View.OnClic
         Intent v = new Intent(this, Call_Form6Activity.class);
         v.putExtra("TRAMITE_PASO5", tramite);
         startActivity(v);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                Serializable dataFromPaso6 = getIntent().getSerializableExtra("TRAMITE_PASO6");
+                //tramite.paso7(justificacionString);
+                justificacion.setText(tramite.getJustificacion());
+                final Tramite tramite = (Tramite) dataFromPaso6;
+                Intent v = new Intent(this, Call_Form6Activity.class);
+                v.putExtra("TRAMITE_PASO5", tramite);
+                startActivity(v);
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 }

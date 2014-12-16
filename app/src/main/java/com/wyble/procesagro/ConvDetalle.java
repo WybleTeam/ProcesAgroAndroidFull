@@ -8,6 +8,7 @@ import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.method.ScrollingMovementMethod;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -32,7 +33,7 @@ public class ConvDetalle extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_conv_detalle);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         Serializable dataFromCallActivity = getIntent().getSerializableExtra("CONVOCATORIA_ITEM");
         final Convocatoria convocatoria = (Convocatoria) dataFromCallActivity;
 
@@ -42,7 +43,7 @@ public class ConvDetalle extends ActionBarActivity {
         facebookBtn = (Button) findViewById(R.id.facebookBtn);
         twitterBtn = (Button) findViewById(R.id.twitterBtn);
 
-        tituloConv.setText(convocatoria.getTitulo());
+        tituloConv.setText(convocatoria.getTitulo().toUpperCase());
         descConv.setText(convocatoria.getDescripcionLarga());
         descConv.setMovementMethod(new ScrollingMovementMethod());
 
@@ -114,5 +115,16 @@ public class ConvDetalle extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -3,6 +3,7 @@ package com.wyble.procesagro;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -42,7 +43,7 @@ public class MainSearch extends ActionBarActivity implements ListView.OnItemClic
 
         Bundle dataFromMain = getIntent().getExtras();
         textToSearch = dataFromMain.getString("TEXTO_BUSCAR");
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         ArrayList tables = new ArrayList();
         db = new DB(this, tables);
 
@@ -166,5 +167,16 @@ public class MainSearch extends ActionBarActivity implements ListView.OnItemClic
             intent.putExtra("URL_PARAMETER", item.getUrl_servicio());
         }
         startActivity(intent);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

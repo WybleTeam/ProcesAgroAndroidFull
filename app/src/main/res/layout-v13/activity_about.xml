@@ -19,21 +19,106 @@
         android:weightSum="1">
 
         <ImageView
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/imageView2"
             android:contentDescription="@string/about"
             android:layout_gravity="top"
-            android:src="@drawable/aboutf_m" />
+            android:src="@drawable/aboutf_m"
+            android:layout_weight="1.38" />
 
         <TextView
-            android:layout_width="fill_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textAppearance="@android:style/TextAppearance.Holo.Small"
-            android:text="© Copyright 2014. Todos los derechos reservados.\nEsta aplicación requiere internet y puede consumir recursos de su plan de datos."
-            android:id="@+id/textView"
-            android:layout_gravity="center_horizontal"
-            android:gravity="center_vertical|center_horizontal" />
+            android:text="Creada por"
+            android:id="@+id/textView11"
+            android:textStyle="bold"
+            android:padding="5dp"
+            android:layout_marginLeft="10dp" />
+
+        <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jhonatan Acelas Arévalo"
+                android:id="@+id/textView12" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:id="@+id/imageView13"
+                    android:src="@drawable/ic_icono_twitter5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\@JhonatanAcelas"
+                    android:id="@+id/textView14"
+                    android:gravity="center_vertical"
+                    android:padding="5dp" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jessica Cruz Alonso"
+                android:id="@+id/textView9" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:id="@+id/imageView15"
+                    android:src="@drawable/ic_icono_twitter5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\@Jessicacruza"
+                    android:id="@+id/textView16"
+                    android:gravity="center_vertical"
+                    android:padding="5dp" />
+            </LinearLayout>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jairo Alonso Fernández Vega"
+                android:id="@+id/textView17" />
+
+            <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="fill_parent"
+                android:layout_height="fill_parent">
+
+                <ImageView
+                    android:layout_width="27dp"
+                    android:layout_height="27dp"
+                    android:id="@+id/imageView18"
+                    android:src="@drawable/ic_icono_twitter5" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="\@tucompualdia"
+                    android:id="@+id/textView19"
+                    android:gravity="center_vertical"
+                    android:padding="5dp" />
+            </LinearLayout>
+
+        </LinearLayout>
 
         <ImageView
             android:layout_width="wrap_content"

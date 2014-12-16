@@ -7,6 +7,7 @@ import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
@@ -36,7 +37,7 @@ public class CursoDetalle extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_curso_detalle);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         Serializable dataFromCallActivity = getIntent().getSerializableExtra("CURSO_VIRTUAL_ITEM");
         final CursoVirtual cursoVirtual = (CursoVirtual) dataFromCallActivity;
 
@@ -46,7 +47,7 @@ public class CursoDetalle extends ActionBarActivity {
         facebookBtn = (Button) findViewById(R.id.facebookBtnCurso);
         twitterBtn = (Button) findViewById(R.id.twitterBtnCurso);
 
-        tituloCurso.setText(cursoVirtual.getNombreCurso());
+        tituloCurso.setText(cursoVirtual.getNombreCurso().toUpperCase());
         descCurso.setText(cursoVirtual.getDescripcionCurso());
         final String url = cursoVirtual.getUrlAudio();
         linkUrlCurso.setOnClickListener(new View.OnClickListener() {
@@ -160,4 +161,34 @@ public class CursoDetalle extends ActionBarActivity {
 
 
     }
+    protected void onDestroy() {
+        super.onDestroy();
+        // TODO Auto-generated method stub
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
+
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
 }

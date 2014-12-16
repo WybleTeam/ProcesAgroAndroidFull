@@ -8,6 +8,7 @@ import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.text.method.ScrollingMovementMethod;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -36,7 +37,6 @@ public class DealsActivity extends ActionBarActivity {
 
     static MediaPlayer mPlayer;
     Button btnPlay;
-    Button buttonStop;
     Boolean repro = false;
 
     @TargetApi(Build.VERSION_CODES.HONEYCOMB)
@@ -44,6 +44,7 @@ public class DealsActivity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_deals);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Serializable dataFromMain = getIntent().getSerializableExtra("OFERTA");
         final Oferta oferta = (Oferta) dataFromMain;
@@ -127,10 +128,22 @@ public class DealsActivity extends ActionBarActivity {
     @Override
     public void onBackPressed() {
         super.onBackPressed();
+        onBackPressed();
         Intent v = new Intent(this, MainActivity.class);
+        v.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         startActivity(v);
     }
 
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        if (mPlayer != null) {
+            mPlayer.release();
+            mPlayer = null;
+        }
+
+    }
     protected void onDestroy() {
         super.onDestroy();
         // TODO Auto-generated method stub
@@ -138,5 +151,15 @@ public class DealsActivity extends ActionBarActivity {
             mPlayer.release();
             mPlayer = null;
         }
+    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

@@ -27,7 +27,8 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:layout_marginLeft="5dp"
-            android:layout_marginRight="5dp" />
+            android:layout_marginRight="5dp"
+            android:textAlignment="center" />
 
         <TextView
             android:layout_width="wrap_content"
@@ -38,11 +39,10 @@
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="30dp"
             android:background="@drawable/descripcion_conv"
-            android:paddingTop="60dp"
+            android:paddingTop="100dp"
             android:paddingLeft="10dp"
             android:paddingRight="10dp"
             android:paddingBottom="20dp"
-            android:maxLines="8"
             android:scrollbars="vertical"/>
 
         <Button

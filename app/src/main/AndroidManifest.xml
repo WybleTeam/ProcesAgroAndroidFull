@@ -48,51 +48,82 @@
             android:name=".ConvDetalle"
             android:label="@string/title_activity_conv_detalle"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.CallActivity" />
         </activity>
         <activity
             android:name=".Call_Form1Activity"
             android:label="@string/title_activity_call__form1"
-            android:screenOrientation="portrait" >
+            android:screenOrientation="portrait"
+            android:noHistory="true">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
         </activity>
         <activity
             android:name=".Call_Form2Activity"
             android:label="@string/title_activity_call__form2"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.Call_Form1Activity" />
         </activity>
         <activity
             android:name=".Call_Form3Activity"
             android:label="@string/title_activity_call__form3"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.Call_Form2Activity" />
         </activity>
         <activity
             android:name=".Call_Form4Activity"
             android:label="@string/title_activity_call__form4"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.Call_Form3Activity" />
         </activity>
         <activity
             android:name=".Call_Form5Activity"
             android:label="@string/title_activity_call__form5"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.Call_Form4Activity" />
         </activity>
         <activity
             android:name=".Call_Form6Activity"
             android:label="@string/title_activity_call__form6"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.Call_Form5Activity" />
         </activity>
         <activity
             android:name=".CallFinishActivity"
             android:label="@string/title_activity_call_finish"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.Call_Form6Activity" />
         </activity>
         <activity
             android:name=".StepsDetailsActivity"
             android:label="@string/title_activity_steps_details"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.DealsActivity" />
         </activity>
         <activity
             android:name=".MainSearch"
             android:label="@string/title_activity_main_search"
             android:screenOrientation="portrait" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.MainActivity" />
         </activity>
         <activity
             android:name=".AboutActivity"
@@ -112,6 +143,9 @@
         <activity
             android:name=".CursoDetalle"
             android:label="@string/title_activity_curso_detalle" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.wyble.procesagro.CursosVirtuales" />
         </activity>
         <activity
             android:name=".IntroActivity"

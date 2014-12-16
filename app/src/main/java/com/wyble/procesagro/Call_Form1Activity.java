@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +32,7 @@ public class Call_Form1Activity extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_call__form1);
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         Serializable dataFromMenu = getIntent().getSerializableExtra("TRAMITE");
         tramite = (Tramite) dataFromMenu;
@@ -159,13 +161,25 @@ public class Call_Form1Activity extends ActionBarActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        finish();
+        this.finish();
+
     }
 
     @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
+    }
+
+    /**@Override
     public void onBackPressed() {
         super.onBackPressed();
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
-    }
+    }**/
 }

@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ListView;
@@ -25,7 +26,7 @@ public class CursosVirtuales extends ActionBarActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_cursos_virtuales);
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
         Serializable dataFromMainActivity = getIntent().getSerializableExtra("CURSOS_VIRTUALES");
         final ArrayList<CursoVirtual> cursosVirt = (ArrayList<CursoVirtual>) dataFromMainActivity;
 
@@ -42,5 +43,16 @@ public class CursosVirtuales extends ActionBarActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

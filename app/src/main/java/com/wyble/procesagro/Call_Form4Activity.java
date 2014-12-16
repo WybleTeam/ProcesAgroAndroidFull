@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -33,7 +34,7 @@ public class Call_Form4Activity extends ActionBarActivity {
 
         Serializable dataFromPaso3 = getIntent().getSerializableExtra("TRAMITE_PASO3");
         final Tramite tramite = (Tramite) dataFromPaso3;
-
+        getActionBar().setDisplayHomeAsUpEnabled(true);
 
         bovino1 = (EditText) findViewById(R.id.bovino1);
         bovino2 = (EditText) findViewById(R.id.bovino2);
@@ -140,5 +141,22 @@ public class Call_Form4Activity extends ActionBarActivity {
         Intent v = new Intent(this, Call_Form3Activity.class);
         v.putExtra("TRAMITE_PASO2", tramite);
         startActivity(v);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        switch (item.getItemId()) {
+            case android.R.id.home: // ID del boton
+                Serializable dataFromPaso3 = getIntent().getSerializableExtra("TRAMITE_PASO3");
+
+                final Tramite tramite = (Tramite) dataFromPaso3;
+                Intent v = new Intent(this, Call_Form3Activity.class);
+                v.putExtra("TRAMITE_PASO2", tramite);
+                startActivity(v);
+                finish(); // con finish terminamos el activity actual, con lo que volvemos
+                // al activity anterior (si el anterior no ha sido cerrado)
+                return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }
