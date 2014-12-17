@@ -1,6 +1,7 @@
 package com.wyble.procesagro;
 
 import android.annotation.TargetApi;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -28,12 +29,13 @@ import static com.wyble.procesagro.R.drawable;
 
 public class DealsActivity extends ActionBarActivity {
 
+    private static final String DIALOG_MENU = "Cargando";
     private Oferta oferta;
     private TextView tituloOferta;
     private TextView descripcionOferta;
     private ListView pasosOfertaListView;
     private Button linkBtn;
-
+    ProgressDialog mProgressDialog;
 
     static MediaPlayer mPlayer;
     Button btnPlay;
@@ -86,9 +88,10 @@ public class DealsActivity extends ActionBarActivity {
                                     } catch (IOException e) {
                                         Toast.makeText(getApplicationContext(), "No hay audio!", Toast.LENGTH_LONG).show();
                                     }
-                            mPlayer.start();
                             Toast.makeText(getApplicationContext(), "Cargando audio...", Toast.LENGTH_LONG).show();
-                            btnPlay.setBackgroundDrawable(getResources().getDrawable(drawable.pause));
+                            mPlayer.start();
+
+                           // btnPlay.setBackgroundDrawable(getResources().getDrawable(drawable.pause));
                 }else{
                     repro = false;
 
@@ -114,7 +117,11 @@ public class DealsActivity extends ActionBarActivity {
                 intent.putExtra("PASO_OFERTA", pasoOferta);
                 startActivity(intent);
             }
+
+
         });
+
+
 
         linkBtn.setOnClickListener(new View.OnClickListener() {
             public void onClick(View v) {
@@ -123,17 +130,9 @@ public class DealsActivity extends ActionBarActivity {
                 startActivity(intent);
             }
         });
-    }
 
-    @Override
-    public void onBackPressed() {
-        super.onBackPressed();
-        onBackPressed();
-        Intent v = new Intent(this, MainActivity.class);
-        v.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        startActivity(v);
-    }
 
+    }
 
     @Override
     protected void onPause() {
@@ -142,8 +141,9 @@ public class DealsActivity extends ActionBarActivity {
             mPlayer.release();
             mPlayer = null;
         }
-
+        //this.finish();
     }
+
     protected void onDestroy() {
         super.onDestroy();
         // TODO Auto-generated method stub
@@ -152,14 +152,24 @@ public class DealsActivity extends ActionBarActivity {
             mPlayer = null;
         }
     }
-    @Override
+   @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         switch (item.getItemId()) {
             case android.R.id.home: // ID del boton
+
                 finish(); // con finish terminamos el activity actual, con lo que volvemos
                 // al activity anterior (si el anterior no ha sido cerrado)
                 return true;
         }
         return super.onOptionsItemSelected(item);
     }
+
+   /* @Override
+    public void onBackPressed() {
+    super.onBackPressed();
+
+        Intent intent = new Intent(this, MainActivity.class);
+        startActivity(intent);
+
+    }*/
 }

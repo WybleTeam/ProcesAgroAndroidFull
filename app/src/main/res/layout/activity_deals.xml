@@ -7,7 +7,9 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin"
     tools:context="com.wyble.procesagro.DealsActivity"
-    android:background="#fff">
+    android:background="#fff"
+    android:isScrollContainer="true"
+    android:padding="10dp">
 
     <LinearLayout
         android:orientation="vertical"
@@ -15,7 +17,9 @@
         android:layout_height="fill_parent"
         android:layout_alignParentTop="true"
         android:layout_centerHorizontal="true"
-        android:weightSum="1">
+        android:weightSum="1"
+        android:isScrollContainer="true"
+        android:id="@+id/lay_ofertas">
 
         <TextView
             android:layout_width="fill_parent"
@@ -38,7 +42,7 @@
             android:id="@+id/deal_descripcion"
             android:layout_gravity="center_horizontal"
             android:padding="1dp"
-            android:maxLines="5"
+            android:maxLines="4"
             android:scrollbars="vertical"/>
 
         <LinearLayout
@@ -50,16 +54,15 @@
 
             <Button
                 android:layout_width="224dp"
-                android:layout_height="wrap_content"
+                android:layout_height="30dp"
                 android:id="@+id/ofertaLinkUrl2"
                 android:layout_gravity="center_horizontal|left"
                 android:background="@drawable/link_pagina"
-                android:padding="2dp"
-                android:layout_weight="0.42" />
+                android:padding="2dp" />
 
             <Button
-                android:layout_width="57dp"
-                android:layout_height="match_parent"
+                android:layout_width="31dp"
+                android:layout_height="31dp"
                 android:id="@+id/btnPlay"
                 android:background="@drawable/play_icon"
                 android:padding="2dp" />
@@ -80,6 +83,10 @@
         <ListView
             android:layout_width="match_parent"
             android:layout_height="207dp"
-            android:id="@+id/pasoslistView" />
+            android:id="@+id/pasoslistView"
+            android:paddingBottom="2dp"
+            android:scrollbars="vertical"
+            android:verticalScrollbarPosition="right"
+            android:focusable="true" />
     </LinearLayout>
 </RelativeLayout>

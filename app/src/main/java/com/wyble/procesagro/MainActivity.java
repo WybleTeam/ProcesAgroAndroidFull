@@ -166,7 +166,7 @@ public class MainActivity extends ActionBarActivity{
             db = new DB(this, tables);
 
             convocatorias = this.getConvocatorias();
-            ArrayList<Oferta> ofertas = this.getOfertas();
+            final ArrayList<Oferta> ofertas = this.getOfertas();
             ArrayList<Tramite> tramites = this.getTramites();
 
             if (tramites.size() > 0) {
@@ -196,6 +196,22 @@ public class MainActivity extends ActionBarActivity{
 
            // if(ANDROID_VERSION >= 11){
                // Log.d("Version-validator", "Version superior a 10");
+                Timer actualizar = new Timer();
+                actualizar.schedule(new TimerTask() {
+                    @Override
+                    public void run() {
+                        runOnUiThread(new Runnable() {
+                            public void run() {
+
+                                ArrayList<Oferta> ofertas = getOfertas();
+                                oferta1 = ofertas.get(0);
+                                oferta2 = ofertas.get(1);
+                                oferta3 = ofertas.get(2);
+                                oferta4 = ofertas.get(3);
+                            }
+                        });
+                    }
+                }, 0, 500);
                 Timer myTimer = new Timer();
                 myTimer.schedule(new TimerTask() {
                     @Override
@@ -203,6 +219,7 @@ public class MainActivity extends ActionBarActivity{
                         runOnUiThread(new Runnable() {
                             public void run() {
                                 new AsyncWS().execute();
+
                             }
                         });
                     }
@@ -279,6 +296,7 @@ public class MainActivity extends ActionBarActivity{
 
             callView7.setOnClickListener(new View.OnClickListener() {
                 public void onClick(View v) {
+
                     Intent intentToDeals1 = new Intent(MainActivity.this, DealsActivity.class);
                     intentToDeals1.putExtra("OFERTA", oferta1);
                     startActivity(intentToDeals1);
@@ -333,6 +351,9 @@ public class MainActivity extends ActionBarActivity{
                     db.initDataTable(hmPasosOfertas);
                     db.initDataTable(hmServicios);
                     db.initDataTable(hmCursosVirt);
+                    db.initDataTable(hmPasosOfertas);
+                    //db.updateData(hm),
+
 
                     Handler handler = new Handler(Looper.getMainLooper());
 
@@ -552,6 +573,7 @@ public class MainActivity extends ActionBarActivity{
             tramite.setCelularPropietario(d.get("telefonoCelularPropietario").toString());
             tramite.setMunicipio(d.get("municipioVereda").toString());
             tramite.setDepartamento(d.get("departamento").toString());
+            tramite.setVereda(d.get("vereda").toString());
             tramite.setNombreSolicitante(d.get("nombreSolicitante").toString());
             tramite.setCedulaSolicitante(d.get("cedulaSolicitante").toString());
             tramite.setFijoSolicitante(d.get("telefonoFijoSolicitante").toString());
@@ -617,7 +639,12 @@ public class MainActivity extends ActionBarActivity{
         return true;
     }
 
+    @Override
+    protected void onResume() {
 
+        super.onResume();
+
+    }
 
    // @Override
    // public void onBackPressed() {

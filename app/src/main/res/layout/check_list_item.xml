@@ -12,15 +12,20 @@
         android:layout_alignParentLeft="true"
         android:focusable="false"
         android:focusableInTouchMode="false"
-        android:text="CheckBox" />
+        android:longClickable="false" />
 
-    <!--<TextView
+    <TextView
         android:id="@+id/checkTextItem"
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:layout_alignBaseline="@+id/checkBoxItem"
         android:layout_alignBottom="@+id/checkBoxItem"
         android:layout_toRightOf="@+id/checkBoxItem"
-        android:text="TextView" />-->
+        android:text="TextView"
+        android:focusable="true"
+        android:focusableInTouchMode="false"
+        android:longClickable="false"
+        android:linksClickable="true"
+        android:onClick="onClick" />
 
 </RelativeLayout>

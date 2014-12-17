@@ -145,9 +145,10 @@ public class CursoDetalle extends ActionBarActivity {
                     } catch (IOException e) {
                         Toast.makeText(getApplicationContext(), "No hay audio!", Toast.LENGTH_LONG).show();
                     }
-                    mPlayer.start();
                     Toast.makeText(getApplicationContext(), "Cargando audio...", Toast.LENGTH_LONG).show();
-                    btnPlay.setBackgroundDrawable(getResources().getDrawable(R.drawable.pause));
+                    mPlayer.start();
+
+                    //btnPlay.setBackgroundDrawable(getResources().getDrawable(R.drawable.pause));
                 }else{
                     repro = false;
 
