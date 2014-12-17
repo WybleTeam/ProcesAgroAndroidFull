@@ -82,7 +82,7 @@
 
         <ListView
             android:layout_width="match_parent"
-            android:layout_height="207dp"
+            android:layout_height="match_parent"
             android:id="@+id/pasoslistView"
             android:paddingBottom="2dp"
             android:scrollbars="vertical"

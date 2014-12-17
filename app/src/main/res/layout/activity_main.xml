@@ -65,7 +65,7 @@
             android:weightSum="1">
 
             <EditText
-                android:layout_width="268dp"
+                android:layout_width="wrap_content"
                 android:singleLine="true"
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
