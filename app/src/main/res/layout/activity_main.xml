@@ -10,19 +10,16 @@
 
     <LinearLayout
         android:orientation="vertical"
-        android:layout_width="wrap_content"
-        android:layout_height="fill_parent"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
-        android:layout_alignParentTop="true"
-        android:id="@+id/linearLayout"
-        android:paddingLeft="2dp"
-        android:paddingTop="2dp"
-        android:paddingRight="2dp"
-        android:paddingBottom="2dp">
+        android:paddingLeft="10dp"
+        android:paddingRight="10dp"
+        android:id="@+id/linearLayout">
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="fill_parent"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right">
 
@@ -37,6 +34,7 @@
                 android:orientation="horizontal"
                 android:layout_width="fill_parent"
                 android:layout_height="match_parent"
+                android:paddingTop="10dp"
                 android:gravity="right"
                 android:background="#fff">
 
@@ -58,8 +56,9 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_alignParentBottom="true"
             android:layout_centerHorizontal="true"
             android:weightSum="1">
@@ -70,6 +69,8 @@
                 android:layout_height="wrap_content"
                 android:id="@+id/editText"
                 android:inputType="text"
+                android:padding="15dp"
+                android:layout_weight="0.9"
                 android:background="@drawable/buscar"
                 android:editable="false" />
 
@@ -77,66 +78,74 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/buscar_button"
+                android:layout_weight="0.1"
                 android:background="@drawable/boton_buscar" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:weightSum="1"
+            android:paddingTop="10dp"
             android:id="@+id/row1">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row1_button1"
+                android:layout_weight="0.4"
                 android:background="@drawable/cursos_virtuales" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row1_button2"
+                android:layout_weight="0.6"
                 android:background="@drawable/agromapas" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:weightSum="1"
+            android:paddingTop="10dp"
             android:id="@+id/row2">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button1"
+                android:layout_weight="0.6"
                 android:background="@drawable/sipsa" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row2_button2"
+                android:layout_weight="0.4"
                 android:background="@drawable/siembra" />
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:id="@+id/row3">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/row3_button1"
                 android:background="@drawable/convocatorias"
                 android:text="Titulo Convocatoria\nDescripción Corta"
                 android:textSize="22sp"
+                android:paddingTop="10dp"
                 android:paddingBottom="30dp"
                 android:textStyle="bold"
                 android:minLines="2" />
@@ -145,13 +154,14 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/row4">
 
             <Button
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:id="@+id/row4_button1"
                 android:background="@drawable/identifica" />
@@ -159,34 +169,39 @@
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/row5">
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button1"
+                android:layout_weight="3"
                 android:background="@drawable/autorizacion" />
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row5_button2"
+                android:layout_weight="1"
                 android:background="@drawable/certificado" />
 
         </LinearLayout>
 
         <LinearLayout
             android:orientation="horizontal"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:paddingTop="10dp"
             android:layout_gravity="center_horizontal"
             android:id="@+id/row6">
 
             <Button
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:layout_weight="1"
                 android:id="@+id/row6_button1"
                 android:background="@drawable/tramite_tarj" />
 
@@ -194,6 +209,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:id="@+id/row6_button2"
+                android:layout_weight="3"
                 android:background="@drawable/incentivo" />
 
         </LinearLayout>

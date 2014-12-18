@@ -47,7 +47,7 @@ public class MainActivity extends ActionBarActivity{
 
     private static final String SERVICIO3_URL = "https://www.dane.gov.co/index.php/agropecuario-alias/sistema-de-informacion-de-precios-sipsa";
 
-    private static final String SERVICIO4_URL = "http://www.siembra.gov.co/";
+    private static final String SERVICIO4_URL = "http://www.siembra.gov.co/NetCorpoica/WebNetAgroNetTec/WebNetAgroNetTec/Pg_GestInnovacion/Pg_Cons_EscritorioVirtual.aspx";
 
     private static final String CONVOCATORIAS_URL = "http://154.70.153.108/proyectos/webservice/convocatorias.php";
 
@@ -181,6 +181,9 @@ public class MainActivity extends ActionBarActivity{
             oferta4 = ofertas.get(3);
 
             searchText = (EditText) findViewById(R.id.editText);
+            //searchText.setFocusableInTouchMode(false);
+           // searchText.setFocusable(false);
+
             searchBtn = (Button) findViewById(R.id.buscar_button);
 
             callView1= (Button) findViewById(R.id.row1_button1);//row1
